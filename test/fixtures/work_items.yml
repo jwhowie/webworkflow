@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  history_text: MyText
+  team: 
+  customer: 
+  step_number: 
+  moved_to_queue: 2016-09-26 14:22:40
+  open: 1
+  user: 
+
+two:
+  history_text: MyText
+  team: 
+  customer: 
+  step_number: 
+  moved_to_queue: 2016-09-26 14:22:40
+  open: 1
+  user: 

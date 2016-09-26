@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Step number:</strong>
+  <%= @process_flow.step_number %>
+</p>
+
+<p>
+  <strong>Step name:</strong>
+  <%= @process_flow.step_name %>
+</p>
+
+<p>
+  <strong>Team:</strong>
+  <%= @process_flow.team %>
+</p>
+
+<%= link_to 'Edit', edit_process_flow_path(@process_flow) %> |
+<%= link_to 'Back', process_flows_path %>

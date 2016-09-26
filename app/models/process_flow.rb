@@ -1,0 +1,2 @@
+class ProcessFlow < ApplicationRecord
+end

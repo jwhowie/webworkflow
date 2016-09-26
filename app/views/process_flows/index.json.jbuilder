@@ -1,0 +1,1 @@
+json.array! @process_flows, partial: 'process_flows/process_flow', as: :process_flow

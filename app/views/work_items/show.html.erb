@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>History text:</strong>
+  <%= @work_item.history_text %>
+</p>
+
+<p>
+  <strong>Team:</strong>
+  <%= @work_item.team %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @work_item.customer %>
+</p>
+
+<p>
+  <strong>Step number:</strong>
+  <%= @work_item.step_number %>
+</p>
+
+<p>
+  <strong>Moved to queue:</strong>
+  <%= @work_item.moved_to_queue %>
+</p>
+
+<p>
+  <strong>Open:</strong>
+  <%= @work_item.open %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @work_item.user %>
+</p>
+
+<%= link_to 'Edit', edit_work_item_path(@work_item) %> |
+<%= link_to 'Back', work_items_path %>

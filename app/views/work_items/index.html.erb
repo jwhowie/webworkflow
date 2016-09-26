@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Work Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>History text</th>
+      <th>Team</th>
+      <th>Customer</th>
+      <th>Step number</th>
+      <th>Moved to queue</th>
+      <th>Open</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @work_items.each do |work_item| %>
+      <tr>
+        <td><%= work_item.history_text %></td>
+        <td><%= work_item.team %></td>
+        <td><%= work_item.customer %></td>
+        <td><%= work_item.step_number %></td>
+        <td><%= work_item.moved_to_queue %></td>
+        <td><%= work_item.open %></td>
+        <td><%= work_item.user %></td>
+        <td><%= link_to 'Show', work_item %></td>
+        <td><%= link_to 'Edit', edit_work_item_path(work_item) %></td>
+        <td><%= link_to 'Destroy', work_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Work Item', new_work_item_path %>

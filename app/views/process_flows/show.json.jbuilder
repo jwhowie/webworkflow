@@ -1,0 +1,1 @@
+json.partial! "process_flows/process_flow", process_flow: @process_flow
