@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160926202253) do
+ActiveRecord::Schema.define(version: 20160926212224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,14 +69,13 @@ ActiveRecord::Schema.define(version: 20160926202253) do
     t.text     "history_text"
     t.integer  "team_id"
     t.integer  "customer_id"
-    t.integer  "step_number_id"
     t.datetime "moved_to_queue"
     t.integer  "open"
     t.integer  "user_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "process_flow_id"
     t.index ["customer_id"], name: "index_work_items_on_customer_id", using: :btree
-    t.index ["step_number_id"], name: "index_work_items_on_step_number_id", using: :btree
     t.index ["team_id"], name: "index_work_items_on_team_id", using: :btree
     t.index ["user_id"], name: "index_work_items_on_user_id", using: :btree
   end
