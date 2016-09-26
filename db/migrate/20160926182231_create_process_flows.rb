@@ -3,7 +3,7 @@ class CreateProcessFlows < ActiveRecord::Migration[5.0]
     create_table :process_flows do |t|
       t.integer :step_number
       t.string :step_name
-      t.reference :team
+      t.references :team
 
       t.timestamps
     end
