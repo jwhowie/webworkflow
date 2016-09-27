@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Webworkflow</title>
+    <title>Web Workflow</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,14 +9,38 @@
   </head>
 
   <body>
-    <div>
-      <% if current_user %>
-        Signed in as <strong><%= current_user.name %></strong>!
-        <%= link_to "Sign out", signout_path, id: "sign_out" %>
-      <% else %>
-        <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
-      <% end %>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <%= link_to "WWF — Web Workflow", '#', id: "logo" %>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <% if current_user %>
+            <li><%= link_to current_user.name, id: "signed_in"%></li>
+            <li><%= link_to "Sign out", signout_path, id: "sign_out" %></li>
+            <% else %>
+            <li><%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %></li>
+             <% end %>
+            <li><%= link_to "Home",   '#' %></li>
+            <li><%= link_to "Help",   '#' %></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+
+    <div class="container">
+      <%= yield %>
     </div>
-    <%= yield %>
+
+    <footer class="footer">
+      <nav>
+        <ul>
+          <li><%= link_to "About",   '#' %></li>
+          <li><%= link_to "Contact", '#' %></li>
+        </ul>
+      </nav>
+    </footer>
+
+
   </body>
 </html>
