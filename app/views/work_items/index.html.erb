@@ -30,20 +30,8 @@
     </tr>
   </thead>
 
-  <tbody>
-    <% @work_items.each do |work_item| %>
-      <tr>
-        <td id='<%= work_item.id%>'><%= work_item.history_text %></td>
-        <td><%= work_item.moved_to_queue %></td>
-        <td><%= work_item.customer %></td>
-        <td><%= work_item.process_flow_id %></td>
-        <td><%= work_item.moved_to_queue %></td>
-        <td><%= work_item.user %></td>
-        <td><%= link_to 'Show', work_item %></td>
-        <td><%= link_to 'Edit', edit_work_item_path(work_item) %></td>
-        <td><%= link_to 'Destroy', work_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  <tbody id='queue-body'>
+
   </tbody>
 </table>
 <div>

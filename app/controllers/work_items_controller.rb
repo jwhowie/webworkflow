@@ -5,6 +5,10 @@ class WorkItemsController < ApplicationController
   # GET /work_items.json
   def index
     @work_items = WorkItem.all
+    respond_to do |format|
+      format.html
+      format.json { render json: WorkItem.get_user_queue } #@pokemons.as_json(only: [:name, :image_url]) }
+    end
   end
 
   # GET /work_items/1

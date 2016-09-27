@@ -5,8 +5,10 @@ class WorkItem < ApplicationRecord
     belongs_to :user, optional: true
 
     def self.get_user_queue
-      getQueue = "select concat(concat(concat(concat(concat(concat(customers.first_name, \' \'),  customers.last_name), ' '), customers.phone), ' '), customers.email) as contact_info,
-      work_items.moved_to_queue, work_items.open, work_items.id,
+      get_queue = "select concat(concat(concat(concat(concat(concat(customers.first_name, ' '),  customers.last_name), ' '), customers.phone), ' '), customers.email) as contact_info,
+      to_char(work_items.moved_to_queue, 'MM-DD-YY HH12:MI') as moved_to_queue,
+      to_char(work_items.created_at, 'MM-DD-YY HH12:MI') as created_at, 
+      work_items.open, work_items.id,
       teams.title,
             users.name, process_flows.step_name
       from work_items, teams, customers, users, process_flows
@@ -15,7 +17,7 @@ class WorkItem < ApplicationRecord
             work_items.user_id = users.id and
             work_items.process_flow_id = process_flows.id"
 
-      return result = ActiveRecord::Base.connection.execute(getQueue).to_json
+      return result = ActiveRecord::Base.connection.execute(get_queue).to_json
     end
 
 end
