@@ -23,6 +23,10 @@ class WorkItemsController < ApplicationController
 
   # GET /work_items/1/edit
   def edit
+    respond_to do |format|
+      format.html
+      format.json { render json: @work_item.get_work_data } #@pokemons.as_json(only: [:name, :image_url]) }
+    end
   end
 
   # POST /work_items

@@ -27,21 +27,33 @@ $(function(){
 
 
     }
-      alert('getting queue');
-      // <tr>
-      //   <td id='<%= work_item.id%>'><%= work_item.history_text %></td>
-      //   <td><%= work_item.moved_to_queue %></td>
-      //   <td><%= work_item.customer %></td>
-      //   <td><%= work_item.process_flow_id %></td>
-      //   <td><%= work_item.moved_to_queue %></td>
-      //   <td><%= work_item.user %></td>
-      //   <td><%= link_to 'Show', work_item %></td>
-      //   <td><%= link_to 'Edit', edit_work_item_path(work_item) %></td>
-      //   <td><%= link_to 'Destroy', work_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      // </tr>
+
     });
   //});
 
+  $('table').on('click', 'tr', function(){
+    var clicked = $(this);
+    clicked.css('background-color', 'teal');
+    $.ajax({
+      url: '/work_items/' + clicked.attr('id') + '/edit',
+      method: 'GET',
+      dataType: 'json',
+      data: {}
+    }).done(function(responseData){
+      console.log(responseData);
+      cust = $('#customer-info');
+      cust.append($('<div>').html(responseData[0].name));
+      cust.append($('<div>').html(responseData[0].address_1));
+      cust.append($('<div>').html(responseData[0].address_2));
+      cust.append($('<div>').html(responseData[0].city));
+      cust.append($('<div>').html(responseData[0].phone));
+      cust.append($('<div>').html(responseData[0].email));
+
+      $('#queue-history').val(responseData.history_text)
+
+
+    });
+  });
   $('#queue-back').on('click', function(){
     alert('back button pressed')
   });
