@@ -11,40 +11,58 @@
     </div>
   <% end %>
 
+
   <div class="field">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
+
+     <div class="">
+         <%= f.label :name %>
+     </div>
+     <div class="">
+        <%= f.text_field :first_name,placeholder: "First Name" %>
+          <%= f.text_field :last_name, placeholder: "Last Name" %>
+     </div>
   </div>
 
   <div class="field">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
+    <div class="">
+      <%= f.label :address %>
+     </div>
+     <div class="">
+      <%= f.text_field :address_1, placeholder:"Street Address" %>
+    </div>
+    <div class="">
+      <%= f.text_field :address_2, placeholder: "Street Address Line 2"%>
+    </div>
+
   </div>
 
   <div class="field">
-    <%= f.label :phone %>
-    <%= f.text_field :phone %>
+      <div class="">
+        <%= f.label :city %>
+      </div>
+      <div class="">
+        <%= f.text_field :city %>
+      </div>
   </div>
 
   <div class="field">
-    <%= f.label :address_1 %>
-    <%= f.text_field :address_1 %>
+      <div class="">
+        <%= f.label :email%>
+      </div>
+      <div class="">
+        <%= f.email_field :email %>
+      </div>
   </div>
 
   <div class="field">
-    <%= f.label :address_2 %>
-    <%= f.text_field :address_2 %>
+      <div class="">
+          <%= f.label :phone%>
+      </div>
+      <div class="">
+         <%= f.telephone_field :phone%>
+      </div>
   </div>
 
-  <div class="field">
-    <%= f.label :city %>
-    <%= f.text_field :city %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
 
   <div class="actions">
     <%= f.submit %>
