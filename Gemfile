@@ -7,7 +7,7 @@ gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 # gem 'sqlite3'
 
 # Use Bootstrap as the CSS styler
-gem 'bootstrap-sass', '3.3.6'
+# gem 'bootstrap-sass', '3.3.6'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
@@ -30,8 +30,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+#Use Google Omniauth for signing in
 gem "omniauth-google-oauth2", "~> 0.2.1"
-
+# Use Figaro to securely configure Rails application
 gem 'figaro'
 
 # Use Capistrano for deployment

@@ -1,0 +1,30 @@
+<div class="form-container">
+
+
+<h3>Name of page</h3>
+
+
+<%= form_for [@object] do |f| %>
+
+<div class="row">
+
+ <div class="form-group col-lg-3">
+   <%= f.label :title%>
+   <%= f.text_field :title, class: "form-control" %>
+   </div>
+ </div>
+
+ <div class="row">
+
+  <div class="form-group col-lg-3">
+     <%= f.label :description %>
+     <%= f.text_area :description, class: "form-control" %>
+    </div>
+  </div>
+
+
+  <%= f.submit class: "btn btn-primary" %>
+  <% end %>
+
+
+</div>
