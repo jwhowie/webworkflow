@@ -1,0 +1,9 @@
+console.log( 'INSIDE `new.js.erb`' ); /// TEMP
+
+console.log( $('#myModal') ); /// TEMP
+
+ $("#myModal").html("<%= escape_javascript(render 'customers/form') %>");
+ $("#myModal").modal('show');
+ $(function(){
+   //$("#myModal").modal('show');
+ });

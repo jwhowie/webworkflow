@@ -1,46 +1,56 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Work Items</h1>
-
+<h3>Work Items</h3>
 <div>
-  Comment:
-  <button id='queue-back' class='queue-button'>Back</button>
-  <button id='queue-escalate' class='queue-button'>Escalate</button>
-  <button id='queue-forward' class='queue-button'>Forward</button>
-  <button id='queue-save' class='queue-button'>Save</button>
-</div>
-<div>
-  <textarea rows="6" cols="50" id='queue-comment'>
-</textarea>
-</div>
-<div id='customer-info'>
-  Customer
 
-</div>
-<table>
-  <thead>
-    <tr>
-      <th>Date in Queue</th>
-      <th>Created</th>
-      <th>Team</th>
-      <th>Action</th>
-      <th>Customer</th>
-      <th>Assigned</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div id='work-area'>
+    <div id='comments-customer'>
 
-  <tbody id='queue-body'>
 
-  </tbody>
-</table>
-<div>
-  <div>
-  History:
-  </div>
-  <textarea rows="6" cols="50" id='queue-history'>
-</textarea>
+    <div id='comments'>
+      <h4>Comment:</h4>
+      <button id='queue-back' class='queue-button'>Back</button>
+      <button id='queue-escalate' class='queue-button'>Escalate</button>
+      <button id='queue-forward' class='queue-button'>Forward</button>
+      <button id='queue-save' class='queue-button'>Save</button>
+      <textarea rows="10" cols="50" id='queue-comment'></textarea>
+
+    </div>
+    <div id='customer-info-block'>
+      <h4>Customer:</h3>
+      <div id='customer-info'>
+      </div>
+    </div>
+    </div>
+    <div id='queue-table'>
+
+
+      <table>
+      <thead>
+        <tr>
+          <th>Date in Queue</th>
+          <th>Created</th>
+          <th>Team</th>
+          <th>Action</th>
+          <th>Customer</th>
+          <th>Assigned</th>
+          <th colspan="3">Action</th>
+        </tr>
+      </thead>
+
+      <tbody id='queue-body'>
+
+      </tbody>
+    </table>
+    </div>
+    <div>
+      <div>
+        <h4>History:</h4>
+      </div>
+      <textarea rows="6" cols="50" id='queue-history'> </textarea>
+    </div>
 </div>
+
 
 
 <br>

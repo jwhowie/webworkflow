@@ -73,6 +73,8 @@ class WorkItemsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_work_item
       @work_item = WorkItem.find(params[:id])
+      @customer = Customer.new
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

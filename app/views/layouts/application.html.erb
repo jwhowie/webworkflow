@@ -17,6 +17,10 @@
             <% if current_user %>
             <li><%= link_to current_user.name, id: "user-name" %></li>
             <li><%= link_to "Sign out", signout_path, id: "sign_out" %></li>
+            <li id='new_customer'>
+
+            <%= link_to 'New Customer', new_customer_path,  {:remote => true,  'data-target' => '#myModal'}  %>
+            </li>
             <% else %>
             <li><%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %></li>
              <% end %>
@@ -28,6 +32,7 @@
     </header>
 
 
+
     <div class="container">
       <%= yield %>
     </div>
@@ -36,8 +41,10 @@
       <div class="navbar navbar-default navbar-fixed-bottom">
           <div class="container">
             <p class="navbar-text pull-right">©2016 WWF — Web Workflow Inc.</p>
+          </div>
       </div>
-
+      <div class="modal fade" id="myModal" role="dialog">
+      </div>
 
   </body>
 </html>

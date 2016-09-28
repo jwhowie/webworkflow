@@ -33,6 +33,7 @@ $(function(){
 
   $('table').on('click', 'tr', function(){
     var clicked = $(this);
+    $('tr').css('background-color', '');
     clicked.css('background-color', 'teal');
     $.ajax({
       url: '/work_items/' + clicked.attr('id') + '/edit',
@@ -42,6 +43,7 @@ $(function(){
     }).done(function(responseData){
       console.log(responseData);
       cust = $('#customer-info');
+      cust.empty();
       cust.append($('<div>').html(responseData[0].name));
       cust.append($('<div>').html(responseData[0].address_1));
       cust.append($('<div>').html(responseData[0].address_2));
@@ -49,7 +51,7 @@ $(function(){
       cust.append($('<div>').html(responseData[0].phone));
       cust.append($('<div>').html(responseData[0].email));
 
-      $('#queue-history').val(responseData.history_text)
+      var hist = $('#queue-history').val(responseData[0].history_text)
 
 
     });

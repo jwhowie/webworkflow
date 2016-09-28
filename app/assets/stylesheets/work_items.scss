@@ -1,3 +1,67 @@
 // Place all the styles related to the WorkItems controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#customer-info {
+  border: solid black 1px;
+  height: 140px;
+
+}
+
+#customer-info-block{
+  float:left;
+  margin-top: 0;
+  width: 20%;
+    //top: 20px;
+}
+
+#comments-customer{
+  width: 100%;
+  overflow: hidden;
+
+}
+
+#comments{
+  display: inline-block;
+  width: 450px;
+  height:auto;
+  float:left;
+}
+
+tr:hover{
+ cursor: pointer;
+ width: auto
+ //nth-child(even) background-color: #f2f2f2;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+#queue-body {
+  height: 400;
+  border: solid black 1px;
+}
+
+#queue-table {
+  height: 800;
+}
+table{
+  width: auto;
+}
+// table{
+//     border: 1px solid black;
+//     table-layout: fixed;
+//     width: 200px;
+// }
+//
+// th, td {
+//
+//     overflow: hidden;
+//     width: 150px;
+// }
+#work-area{
+  position: relative;
+
+}
+
+h3{
+  text-align: center;
+}
