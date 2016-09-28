@@ -12,15 +12,24 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %>
+    <%= f.label :Team %>
     <%= f.text_field :title %>
   </div>
 
-  <div class="field">
-    <%= f.label :user %>
-    <%= f.text_field :user %>
+  <%= fields_for :users, user do |f| %>
+  <div class="dynamic">
+  <div class="user_specs">
+    <%= f.label :name %>
+    <%= f.text_field :name, {name: "users[0][name]"} %>
   </div>
 
+ <div class="user_specs">
+   <%= f.label :email %>
+   <%= f.text_field :email, {email: "users[0][email]"}%>
+ </div>
+ <%= button_tag "+", id: "addToTeam" %>
+</div>
+<% end %>
   <div class="actions">
     <%= f.submit %>
   </div>
