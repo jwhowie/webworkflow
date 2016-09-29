@@ -72,4 +72,8 @@ $(function(){
     alert('save button pressed')
   });
 
+  $('#myModal').on('click', '#save-customer', function(){
+    $('#new_customer').submit();
+  });
+
 });

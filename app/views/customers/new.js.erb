@@ -5,5 +5,8 @@ console.log( $('#myModal') ); /// TEMP
  $("#myModal").html("<%= escape_javascript(render 'customers/form') %>");
  $("#myModal").modal('show');
  $(function(){
+   $('#save-customer').on('click', function(){
+     $('#new_customer').submit();
+   });
    //$("#myModal").modal('show');
  });
