@@ -40,8 +40,16 @@ class TeamsController < ApplicationController
   # PATCH/PUT /teams/1
   # PATCH/PUT /teams/1.json
   def update
+    # raise params.inspect
     respond_to do |format|
       if @team.update(team_params)
+         params[:peers].each do |number, peer|
+          #  byebug
+          User.find_or_create_by(email: peer[:email]) do |created_peer|
+            created_peer.team = @team
+            created_peer.name = peer[:name]
+          end
+        end
         format.html { redirect_to @team, notice: 'Team was successfully updated.' }
         format.json { render :show, status: :ok, location: @team }
       else

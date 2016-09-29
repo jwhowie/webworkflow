@@ -19,8 +19,6 @@ accounts_receivable = Team.create(title: 'Accounts Receivable')
 @user = User.create(email:'billwebworkflow@gmail.com', team_id: accounts_receivable.id)
 
 
-
-
 @process = ProcessFlow.create(step_number: 1, step_name:'Take Order', team_id: sales.id)
 @process = ProcessFlow.create(step_number: 2, step_name:'Book Measurments', team_id: services.id)
 @process = ProcessFlow.create(step_number: 2, step_name:'Take Measurments', team_id: services.id)
