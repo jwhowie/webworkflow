@@ -73,7 +73,7 @@ $(function(){
   });
 
   $('#myModal').on('click', '#save-customer', function(){
-    $('#new_customer').submit();
+    $('.new_customer').submit();
   });
 
 });
