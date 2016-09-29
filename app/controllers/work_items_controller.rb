@@ -79,6 +79,6 @@ class WorkItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def work_item_params
-      params.require(:work_item).permit(:history_text, :team, :customer, :step_number, :moved_to_queue, :open, :user)
+      params.require(:work_item).permit(:history_text, :team, :customer, :step_number, :moved_to_queue, :open, :user, :action)
     end
 end

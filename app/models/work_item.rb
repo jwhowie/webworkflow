@@ -4,6 +4,24 @@ class WorkItem < ApplicationRecord
     belongs_to :team
     belongs_to :user, optional: true
 
+    def update(params)
+        super(params)
+        case params[:action]
+          when 1 then send_back
+          when 2 then escalate
+          when 3 then forward
+        end
+    end
+
+    def send_back
+    end
+
+    def escalate
+    end
+
+    def forward
+    end
+
     def self.get_user_queue
       get_queue = "select concat(concat(concat(concat(concat(concat(customers.first_name, ' '),  customers.last_name), ' '), customers.phone), ' '), customers.email) as contact_info,
       to_char(work_items.moved_to_queue, 'MM-DD-YY HH12:MI') as moved_to_queue,

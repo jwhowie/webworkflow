@@ -1,5 +1,5 @@
 $(function(){
-
+  var selectedRow;
   $.ajax({
     url: '/work_items',
     method: 'GET',
@@ -32,11 +32,11 @@ $(function(){
   //});
 
   $('table').on('click', 'tr', function(){
-    var clicked = $(this);
+    selectedRow = $(this);
     $('tr').css('background-color', '');
-    clicked.css('background-color', 'teal');
+    selectedRow.css('background-color', 'teal');
     $.ajax({
-      url: '/work_items/' + clicked.attr('id') + '/edit',
+      url: '/work_items/' + selectedRow.attr('id') + '/edit',
       method: 'GET',
       dataType: 'json',
       data: {}
@@ -57,11 +57,12 @@ $(function(){
     });
   });
   $('#queue-back').on('click', function(){
+    saveComments(1);
     alert('back button pressed')
   });
 
-  $('#queue-escolate').on('click', function(){
-    alert('Escolate button pressed')
+  $('#queue-escalate').on('click', function(){
+    alert('Escalate button pressed')
   });
 
   $('#queue-forward').on('click', function(){
@@ -73,7 +74,26 @@ $(function(){
   });
 
   $('#myModal').on('click', '#save-customer', function(){
+    saveComments(4);
     $('.new_customer').submit();
   });
+
+  function saveComments(action)
+  {
+    var comment = $('queue-comment');
+    var sendData = {action: action};
+    sendData = {history_text: comment.val()};
+    sendData = {id: selectedRow.attr('id')};
+
+    $.ajax({
+      url: '/work_items/' + selectedRow.attr('id');
+      method: 'PATCH',
+      dataType: 'json',
+      data: {work_item: sendData}
+    }).done(responseData, function(){
+
+    });
+
+  }
 
 });
