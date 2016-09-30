@@ -48,10 +48,11 @@ class WorkItemsController < ApplicationController
   # PATCH/PUT /work_items/1
   # PATCH/PUT /work_items/1.json
   def update
+
     respond_to do |format|
-      if @work_item.update(work_item_params)
+      if @work_item.update_action(work_item_params)
         format.html { redirect_to @work_item, notice: 'Work item was successfully updated.' }
-        format.json { render :show, status: :ok, location: @work_item }
+        format.json #{ render :show, status: :ok, location: @work_item }
       else
         format.html { render :edit }
         format.json { render json: @work_item.errors, status: :unprocessable_entity }
@@ -79,6 +80,6 @@ class WorkItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def work_item_params
-      params.require(:work_item).permit(:history_text, :team, :customer, :step_number, :moved_to_queue, :open, :user, :action)
+      params.require(:work_item).permit(:history_text, :team, :customer, :step_number, :moved_to_queue, :open, :user, :action, :comment, :work_item_key)
     end
 end

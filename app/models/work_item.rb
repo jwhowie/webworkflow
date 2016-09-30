@@ -1,25 +1,76 @@
 class WorkItem < ApplicationRecord
     belongs_to :customer
-    belongs_to :process_flow
-    belongs_to :team
+    belongs_to :process_flow, optional: true
+    belongs_to :team, optional: true
     belongs_to :user, optional: true
+    def update_action(params)
 
-    def update(params)
-        super(params)
+        #@history_text = params[:comment]
+        #super(params)
+        user_name = user.name
+        from_team = process_flow.team.title
+        actiontitle = ''
         case params[:action]
-          when 1 then send_back
-          when 2 then escalate
-          when 3 then forward
+        when '1' then actiontitle = send_back
+        when '2' then actiontitle = escalate
+        when '3' then actiontitle = forward
+        when '4' then actiontitle = savecomments
         end
+        if process_flow != nil
+          newaction = process_flow.step_name
+        else
+          newaction = 'finished'
+        end
+        build_history(user_name, newaction, actiontitle, from_team, params[:comment])
+
+        self.save
+
+        return true
     end
 
     def send_back
+
+      self.process_flow = process_flow.business_process.process_flows.order(step_number: :desc ).where("step_number < ?", process_flow.step_number).first()
+      team_lead = self.process_flow.team.user
+      self.user = team_lead
+      self.team = team_lead.team
+      self.moved_to_queue = Time.now.getutc
+      return 'returned'
     end
 
     def escalate
+      team_lead = process_flow.team.user
+      self.user = team_lead
+      return 'escalated'
+    end
+
+    def savecomments
     end
 
     def forward
+
+      self.process_flow = process_flow.business_process.process_flows.order(:step_number).where("step_number > ?", self.process_flow.step_number).first()
+
+
+      if self.process_flow != nil
+        self.team_id = self.process_flow.team_id
+      else
+        self.team_id = nil
+        self.user_id = nil
+      end
+      self.moved_to_queue = Time.now.getutc
+      return 'forward';
+    end
+
+    def build_history(name, title, action, from_team, comment)
+        if self.history_text == nil
+          self.history_text = ''
+        end
+        history_header = "#{name} from #{from_team} at #{Time.now.getutc} #{action} to "
+        history_header += title
+        history = history_header + "\n" + comment + "\n\n" + history_text
+        self.history_text = history
+
     end
 
     def self.get_user_queue
