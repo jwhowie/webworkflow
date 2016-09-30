@@ -1,0 +1,55 @@
+<textarea rows="10" cols="50" id='queue-comment'></textarea>
+<%= form_for(work_item) do |f| %>
+  <% if work_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(work_item.errors.count, "error") %> prohibited this work_item from being saved:</h2>
+
+      <ul>
+      <% work_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+  <text_field></text_field>
+  </div>
+  <div class="field">
+    <%= f.label :history_text %>
+    <%= f.text_area :history_text %>
+  </div>
+
+  <div class="field">
+    <%= f.label :team %>
+    <%= f.text_field :team %>
+  </div>
+
+  <div class="field">
+    <%= f.label :customer %>
+    <%= f.text_field :customer %>
+  </div>
+
+  <div class="field">
+    <%= f.label :process_flow_id %>
+    <%= f.text_field :process_flow_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :moved_to_queue %>
+    <%= f.datetime_select :moved_to_queue %>
+  </div>
+
+  <div class="field">
+    <%= f.label :open %>
+    <%= f.number_field :open %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user %>
+    <%= f.text_field :user %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

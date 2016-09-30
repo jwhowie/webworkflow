@@ -4,7 +4,10 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
   def index
-    @customers = Customer.all
+
+    #@customers = Customer.all
+
+    @customers = Customer.where('lower(last_name) like ?', params[:term] + '%').order(:last_name).first(5)
   end
 
   # GET /customers/1
