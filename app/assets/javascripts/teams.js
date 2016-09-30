@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  var newButton = 0;
 
   $('#addToTeam').on('click', function(e){
 
@@ -9,15 +10,22 @@ $(document).ready(function(){
     $('.dynamic').data('latest-user-id', nextUserId);
 
 
-    $('.dynamic').append("<div style='clear: both'><div class='user_specs'><input type='text' name='peers["+nextUserId+"][name]' id='team_users_" + nextUserId + "_name'><input type='text' name='peers[" + nextUserId + "][email]' id='team_users_" + nextUserId + "_email'><button id='removeFromTeam'>-</button></div></div>");
+    var nextButton = $('.dynamic').data('remove-button-id') + 1;
+
+    $('.dynamic').data('remove-button-id', nextButton);
+
+    newButton = newButton +1;
+
+    $('.dynamic').append("<div style='clear: both'><div class='user_specs' data-remove-button-id=0><input type='text' name='peers["+nextUserId+"][name]' id='team_users_" + nextUserId + "_name'><input type='text' name='peers[" + nextUserId + "][email]' id='team_users_" + nextUserId + "_email'><input type='button' id='removeFromTeam" + newButton.toString() + "'/></div></div>");
+
+    $('#removeFromTeam'+newButton).on('click', function(e2){
+      console.log('im happening')
+      e2.preventDefault();
+
+
+      $(this).parent().remove();
+    });
   });
 
-  $('#removeFromTeam').on('click', function(e2){
 
-    e2.preventDefault();
-
-    var lastUserId = $('.user_specs');
-
-    $('.dynamic').remove("<div style='clear: both'><div class='user_specs'><input type='text' name='peers["+nextUserId+"][name]' id='team_users_" + nextUserId + "_name'><input type='text' name='peers[" + nextUserId + "][email]' id='team_users_" + nextUserId + "_email'></div></div>");
-  });
 });
