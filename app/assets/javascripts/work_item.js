@@ -153,6 +153,7 @@ $(function(){
     console.log(sendData);
     $.ajax({
        url: '/work_items/' + selectedRow.attr('id'),
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
       method: 'PATCH',
       dataType: 'json',
       data: {work_item: sendData}

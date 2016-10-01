@@ -34,9 +34,11 @@ $(function(){
       $('<li>').attr('role', 'presentation')
         .append($('<a>'))
         .attr('href', '/work_items/new?business=' + responseData[i].id)
+        .attr('role', 'menuitem')
+        .attr('tabindex', '-1')
         .html(responseData[i].title)
         .insertAfter(menuPlaceHolder);
-
+        // $('.dropdown-toggle').dropdown();
     }
   });
 });
