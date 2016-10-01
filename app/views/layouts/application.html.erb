@@ -16,11 +16,52 @@
           <ul class="nav navbar-nav navbar-right">
             <% if current_user %>
             <li><%= link_to current_user.name, id: "user-name" %></li>
-            <li><%= link_to "Sign out", signout_path, id: "sign_out" %></li>
-            <li id='new_customer'>
+            <li>
 
-            <%= link_to 'New Customer', new_customer_path,  {:remote => true,  'data-target' => '#myModal'}  %>
+
+            <li id='new_customer' class=''>
+
+
             </li>
+<!-- //jwh start -->
+<!-- <h2>Dropdown Example</h2>
+<p>The data-toggle="dropdown" attribute is used to open the dropdown menu.</p> -->
+<div class="dropdown">
+  <!-- btn btn-primary -->
+   <button class="nav dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Menu
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">New Business Process</a></li>
+    <li role="presentation">
+      <!-- <a role="menuitem" tabindex="-1" href="#">New Customer</a> -->
+      <%= link_to 'New Customer', new_customer_path,  {:remote => true,  'data-target' => '#myModal'}  %>
+    </li>
+    <div id='dynamic-items'></div>
+
+
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
+    <li role="presentation" class="divider"></li>
+    <li role="presentation">
+      <%= link_to "Sign out", signout_path, id: "sign_out" %>
+    </li>
+  </ul>
+</div>
+
+            <!-- <div class="dropdown nav navbar-nav navbar-right">
+              <button onclick="myFunction()" class="dropdown-menu">Menu</button>
+              <div id="myDropdown" class="dropdown-content">
+                <ul>
+
+                </ul>
+                <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+              </div>
+            </div> -->
+
+
+
+<!-- //jwh end -->
             <% else %>
             <li><%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %></li>
              <% end %>

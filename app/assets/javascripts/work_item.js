@@ -62,8 +62,8 @@ $(function(){
 
   var selectedRow = '';
   var id = '';
-  $('button').prop('disabled', true);
-  $('button').css('color', 'grey');
+  // $('button').prop('disabled', true);
+  // $('button').css('color', 'grey');
   loadTable();
 
   function loadTable()
@@ -113,8 +113,8 @@ $(function(){
   $('table').on('click', 'tr', function(){
     selectedRow = $(this);
     id = selectedRow.attr('id');
-    $('button').prop('disabled', false);
-    $('button').css('color', 'black');
+    // $('button').prop('disabled', false);
+    // $('button').css('color', 'black');
     $('tr').css('background-color', '');
     selectedRow.css('background-color', 'aqua');
     $.ajax({

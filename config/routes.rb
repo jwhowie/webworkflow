@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :teams
   resources :customers
   resources :users
+  resources :business_processes
 
 
   get 'auth/:provider/callback', to: 'sessions#create'
@@ -12,7 +13,5 @@ Rails.application.routes.draw do
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
   resources :sessions, only: [:create, :destroy]
-
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
