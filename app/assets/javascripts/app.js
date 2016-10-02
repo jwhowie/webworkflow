@@ -31,13 +31,16 @@ $(function(){
     console.log(responseData);
     var menuPlaceHolder = $('#dynamic-items');
     for(var i = 0; i < responseData.length; i++) {
-      $('<li>').attr('role', 'presentation')
-        .append($('<a>'))
+      listItem = $('<li>').attr('role', 'presentation');
+
+        href = ($('<a>'))
         .attr('href', '/work_items/new?business=' + responseData[i].id)
         .attr('role', 'menuitem')
         .attr('tabindex', '-1')
-        .html(responseData[i].title)
-        .insertAfter(menuPlaceHolder);
+        .html(responseData[i].title);
+
+        listItem.append(href);
+        listItem.insertAfter(menuPlaceHolder);
         // $('.dropdown-toggle').dropdown();
     }
   });
