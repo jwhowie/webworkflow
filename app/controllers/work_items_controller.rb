@@ -32,12 +32,13 @@ class WorkItemsController < ApplicationController
   # POST /work_items
   # POST /work_items.json
   def create
-    @work_item = WorkItem.new(work_item_params)
+    @work_item = WorkItem.new
+    @work_item.create_work_item(work_item_params, current_user)
 
     respond_to do |format|
       if @work_item.save
         format.html { redirect_to @work_item, notice: 'Work item was successfully created.' }
-        format.json { render :show, status: :created, location: @work_item }
+        format.json { redirect_to action: :index } #{ render :show, status: :created, location: @work_item }
       else
         format.html { render :new }
         format.json { render json: @work_item.errors, status: :unprocessable_entity }
@@ -80,6 +81,6 @@ class WorkItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def work_item_params
-      params.require(:work_item).permit(:history_text, :team, :customer, :step_number, :moved_to_queue, :open, :user, :action, :comment, :work_item_key)
+      params.require(:work_item).permit(:history_text, :team, :customer, :step_number, :moved_to_queue, :open, :user, :action, :comment, :work_item_key, :processKey)
     end
 end

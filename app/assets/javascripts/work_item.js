@@ -164,16 +164,62 @@ $(function(){
 
   }
 
+  function postComments(action)
+  {
+    var pair = window.location.search.split('=')
+
+    var comment = $('#queue-comment');
+    var sendData = {};
+    sendData['action'] =  action;
+    sendData['comment'] = comment.val();
+    sendData['processKey'] = pair[1];
+    sendData['customer'] = customerId
+    console.log(sendData);
+    $.ajax({
+       url: '/work_items/',
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      method: 'POST',
+      dataType: 'json',
+      data: {work_item: sendData}
+    }).done(function(){
+      $('#queue-body').empty();
+      loadTable();
+    });
+
+  }
+
   $('#queue-escalate').on('click', function(){
-    saveComments(2);
+    var pair = window.location.search.split('=')
+    if (pair[0] === "")
+    {
+      saveComments(2);
+    }
+    else {
+      postComments(2);
+    }
   });
 
   $('#queue-forward').on('click', function(){
-    saveComments(3);
+    var pair = window.location.search.split('=')
+    if (pair[0] === "")
+    {
+      saveComments(3);
+    }
+    else {
+      postComments(3);
+    }
   });
 
   $('#queue-save').on('click', function(){
-    saveComments(4);
+    var pair = window.location.search.split('=')
+    if (pair[0] === "")
+    {
+      saveComments(4);
+    }
+    else {
+
+      postComments(4);
+    }
   });
 
   $('#myModal').on('click', '#save-customer', function(){

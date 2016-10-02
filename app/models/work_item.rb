@@ -3,6 +3,20 @@ class WorkItem < ApplicationRecord
     belongs_to :process_flow, optional: true
     belongs_to :team, optional: true
     belongs_to :user, optional: true
+
+    def create_work_item(params, creator)
+      self.process_flow = BusinessProcess.get_first_step(params[:processKey])
+      self.team = self.process_flow.team
+      self.user = self.process_flow.team.user
+      self.customer_id = params[:customer]
+      self.moved_to_queue = Time.now.getutc
+      build_history(creator.name, self.process_flow.step_name, "created new", self.team.title, params[:comment])
+      self.save
+      if params[:action] != 4
+        update_action(params)
+      end
+    end
+
     def update_action(params)
 
         #@history_text = params[:comment]
