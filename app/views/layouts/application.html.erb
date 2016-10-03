@@ -33,7 +33,7 @@
       <!-- <a role="menuitem" tabindex="-1" href="#">New Customer</a> -->
       <%= link_to 'New Customer', new_customer_path,  {:remote => true,  'data-target' => '#myModal'}  %>
     </li>
-    <% if my_team.user == current_user %>
+    <% if current_user && my_team.user == current_user %>
     <li role='presentation'><%=  link_to 'Edit my team', edit_team_path(my_team.id) %></li>
     <% end %>
     <div id='dynamic-items'></div>
