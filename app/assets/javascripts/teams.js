@@ -41,6 +41,8 @@ $(document).ready(function(){
     var cells = oldRow.find('td');
     var sendData = {};
     sendData['id'] = oldRow.attr('id');
+    sendData['business_process_name'] = '';
+    sendData['action'] = 1;
     sendData['title'] = cells[0].children[0].value;
     sendData['name'] = cells[1].children[0].value;
     sendData['email'] = cells[2].children[0].value;
