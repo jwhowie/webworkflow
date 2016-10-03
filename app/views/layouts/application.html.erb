@@ -15,7 +15,7 @@
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <% if current_user %>
-            <li><%= link_to current_user.name, id: "user-name" %></li>
+            <li><%= link_to current_user.name, work_items_path %></li>
             <li>
 
 
@@ -33,6 +33,9 @@
       <!-- <a role="menuitem" tabindex="-1" href="#">New Customer</a> -->
       <%= link_to 'New Customer', new_customer_path,  {:remote => true,  'data-target' => '#myModal'}  %>
     </li>
+    <% if my_team.user == current_user %>
+    <li role='presentation'><%=  link_to 'Edit my team', edit_team_path(my_team.id) %></li>
+    <% end %>
     <div id='dynamic-items'></div>
 
 
