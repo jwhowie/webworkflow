@@ -19,8 +19,8 @@
         <td><%= process_flow.step_name %></td>
         <td><%= process_flow.team %></td>
         <td><%= link_to 'Show', process_flow %></td>
-        <td><%= link_to 'Edit', edit_process_flow_path(process_flow) %></td>
-        <td><%= link_to 'Destroy', process_flow, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_process_flow_path(process_flow), class: "btn btn-info", style: "color: white" %></td>
+        <td><%= link_to 'Destroy', process_flow, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning", style: "color: white" %></td>
       </tr>
     <% end %>
   </tbody>

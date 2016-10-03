@@ -1,3 +1,6 @@
+<div class="form-container">
+
+
 <%= form_for(process_flow) do |f| %>
   <% if process_flow.errors.any? %>
     <div id="error_explanation">
@@ -11,22 +14,28 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :step_number %>
-    <%= f.number_field :step_number %>
+  <div class="row">
+    <div class="form-group col-lg-3">
+      <%= f.label :step_number %>
+      <%= f.number_field :step_number, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :step_name %>
-    <%= f.text_field :step_name %>
+  <div class="row">
+    <div class="form-group col-lg-3">
+      <%= f.label :step_name %>
+      <%= f.text_field :step_name, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :team %>
-    <%= f.text_field :team %>
+  <div class="row">
+    <div class="form-group col-lg-3">
+      <%= f.label :team %>
+      <%= f.text_field :team, class: "form-control" %>
+    </div>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>

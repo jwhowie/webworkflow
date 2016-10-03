@@ -7,36 +7,16 @@
     <tr>
       <th>Title</th>
       <th>User</th>
-      <th colspan="3"></th>
+      <th>Email</th>
+      <th>Action</th>
     </tr>
 
   </thead>
 
   <tbody>
-    <% @teams.each do |team| %>
-      <tr>
-        <td><%= team.title %></td>
-        <td><%= team.user.name %></td>
-
-        <td><%= team.user.email %></td>
-  <% if @team.users != nil %>
-
-        <% @team.users.each do |user| %>
-        <td><%= user.name %></td>
-
-        <td><%= user.email %></td>
-
-        <%end%>
-        <%end%>
 
 
 
-
-        <td><%= link_to 'Show', team %></td>
-        <td><%= link_to 'Edit', edit_team_path(team) %></td>
-        <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
   </tbody>
 </table>
 
