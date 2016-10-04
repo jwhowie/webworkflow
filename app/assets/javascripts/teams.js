@@ -10,6 +10,9 @@ $(document).on('turbolinks:load', function(){
       data: {}
     }).done(function(responseData){
     console.log(responseData);
+    var processName = $('<input>').attr('type', 'text').attr('class', 'process-name');
+    $('#business-process-name').append(processName);
+
     for (var i = 0; i < responseData.length; i++) {
       var row = $('<tr>').attr('id', responseData[i].id);
 
@@ -123,7 +126,7 @@ $(document).on('turbolinks:load', function(){
     var cells = oldRow.find('td');
     var sendData = {};
     sendData['id'] = oldRow.attr('id');
-    sendData['business_process_name'] = '';
+    sendData['business_process_name'] = $('.process-name').val();
     sendData['action'] = 1;
     sendData['title'] = cells[0].children[0].value;
     sendData['name'] = cells[1].children[0].value;
@@ -194,6 +197,28 @@ $(document).on('turbolinks:load', function(){
   //     $(this).parent().remove();
   //   });
   // });
+
+
+
+  $('#process-next').on('click', function(){
+    var processName = $('.process-name').val();
+    var sendData = {};
+    sendData['title'] = processName;
+
+    $.ajax({
+      url: '/business_processes',
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      method: 'POST',
+      dataType: 'json',
+      data: {business_process: sendData}
+    }).done(function(responseData){
+      console.log(responseData);
+      window.location.href='/process_flows?id=' + responseData.id + '&title=' + responseData.title;
+
+    });
+
+
+  });
 
 
 });

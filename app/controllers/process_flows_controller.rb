@@ -5,6 +5,13 @@ class ProcessFlowsController < ApplicationController
   # GET /process_flows.json
   def index
     @process_flows = ProcessFlow.all
+
+    respond_to do |format|
+      format.html
+      # format.json { render json: }
+    end
+
+
   end
 
   # GET /process_flows/1
