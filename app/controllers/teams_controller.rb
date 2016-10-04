@@ -25,6 +25,12 @@ class TeamsController < ApplicationController
 
   # GET /teams/1/edit
   def edit
+    x = Team.team_members(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.json {render json: Team.team_members(params[:id])}
+    end
   end
 
   # POST /teams
@@ -76,6 +82,9 @@ class TeamsController < ApplicationController
   #         format.json { render json: @team.errors, status: :unprocessable_entity }
   #       end
   #     end
+
+      
+
     end
 
 

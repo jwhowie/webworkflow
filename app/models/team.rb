@@ -11,4 +11,9 @@ class Team < ApplicationRecord
     end
 
 
+def self.team_members(team)
+  query = "select teams.id, teams.title, users.name, users.email, users.id as team_user_id from teams, users where users.team_id = teams.id and teams.id = #{team}"
+  return result = ActiveRecord::Base.connection.execute(query).to_json
+end
+
 end
