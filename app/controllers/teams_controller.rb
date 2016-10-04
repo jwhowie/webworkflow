@@ -8,7 +8,7 @@ class TeamsController < ApplicationController
     respond_to do |format|
       # byebug
       format.html
-      format.json { render json: Team.my_teams(current_user)}
+      format.json { render json: Team.my_teams(current_user) }
     end
 
   end
