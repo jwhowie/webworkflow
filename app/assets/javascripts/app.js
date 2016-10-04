@@ -18,8 +18,9 @@ toggle between hiding and showing the dropdown content */
 //     }
 //   }
 // }
+//$(function(){
+$(document).on('turbolinks:load', function(){
 
-$(function(){
   console.log('page loaded');
   $.ajax({
     url: '/business_processes',
