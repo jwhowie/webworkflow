@@ -73,18 +73,24 @@ $(document).on('turbolinks:load', function(){
 
  $('tbody').on('click', '.team_button', function(){
 
-   if ( $('.team-title').val() || cells[1].children[0].value || cells[2].children[0].value === 0) {
-     console.log('EMPTY CHECK!!!')
-   }  ;
-
    var oldRow = $(this).closest('tr');
    var cells = oldRow.find('td');
    var sendData = {};
+
+   if ( $('.team-title').val() === '' || cells[0].children[0].value ==='' || cells[1].children[0].value === 0) {
+     console.log('EMPTY CHECK!!!')
+     return;
+
+   };
+
+   if ( $(this).html() === '+' ){
+
+
    sendData['id'] = oldRow.attr('id');
    sendData['team_title'] = $('.team-title').val();
    sendData['action'] = 2;
-   sendData['name'] = cells[1].children[0].value;
-   sendData['email'] = cells[2].children[0].value;
+   sendData['name'] = cells[0].children[0].value;
+   sendData['email'] = cells[1].children[0].value;
    // sendData['user_id'] = cells[2].attr('id');
    $(this).html(' - ');
 
@@ -92,9 +98,10 @@ $(document).on('turbolinks:load', function(){
 
    $.ajax({
      url: '/teams',
+     beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
      method: 'POST',
      dataType: 'json',
-     data: {user: sendData}
+     data: {team: sendData}
    }).done(function(responseData){
      console.log(responseData);
 
@@ -118,7 +125,19 @@ $(document).on('turbolinks:load', function(){
 
      $('tbody').append(row);
 
+   } else {
+     $.ajax({
 
+       url: '/users/' + oldRow.attr('id'),
+       beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+       method: 'DELETE',
+       dataType: 'html',
+       data: {}
+
+     }).done(function(){
+       console.log('DELTED!');
+     });
+   };
  });
 
   $('tbody').on('click', '.action_button', function(e) {

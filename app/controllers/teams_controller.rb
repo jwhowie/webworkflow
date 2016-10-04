@@ -83,7 +83,15 @@ class TeamsController < ApplicationController
   #       end
   #     end
 
-      
+      elsif team_params[:action] == '2'
+        user = User.find_by(email: team_params[:email])
+        if user == nil
+          user = User.new
+          user.email = team_params[:email]
+          user.name = team_params[:name]
+          users.team_id = params[:id]
+        end
+
 
     end
 
@@ -131,6 +139,6 @@ class TeamsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
       # byebug
-      params.require(:team).permit(:title, :user, :name, :email, :user_id, :id, :business_process_name, :action)
+      params.require(:team).permit(:title, :user, :name, :email, :user_id, :id, :business_process_name, :action, :team_title)
     end
 end
