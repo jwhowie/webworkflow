@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
-  root 'work_items#index'
+ 
+
+  root 'homes#show'
   resources :work_items
   resources :process_flows
   resources :teams
   resources :customers
   resources :users
   resources :business_processes
-
+  resources :homes, only: [:show]
 
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
