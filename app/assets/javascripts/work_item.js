@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('turbolinks:load', function(){
   var customerId = ''
   $('#autocomplete').autocomplete({
     source: function(request, response){
