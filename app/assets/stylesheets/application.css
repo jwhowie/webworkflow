@@ -11,9 +11,16 @@
  * It is generally better to create a new file per style scope.
  *
  *= require bootstrap.min
- *= require_tree .
+ *= require app
+ *= require custom
+ *= require homes
+
+ *= require teams
+ *= require work_items
+
+ *= require sticky-footer
  *= require_self
 
- *= require jquery-ui
+
 
  */

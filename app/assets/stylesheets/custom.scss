@@ -47,6 +47,10 @@ p {
   font-size: 1.1em;
   line-height: 1.7em;
 }
+.container p {
+  color: #fff;
+
+}
 
 /* header */
 
@@ -54,7 +58,7 @@ p {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: #6699ff;
+      color: white;
   // text-transform: uppercase;
   text-transform: full-width;
   letter-spacing: -1px;
@@ -72,34 +76,37 @@ p {
   font-weight: bold;
 }
 
-/* footer */
 
 
-footer {
-  margin-top: 145px;
-  padding-top: 5px;
-  border-top: 1px solid #eaeaea;
-  color: #777;
-}
 
-footer a {
-  color: #555;
-}
 
-footer a:hover {
-  color: #222;
-}
-
-footer small {
-  float: left;
-}
-
-footer ul {
-  float: right;
-  list-style: none;
-}
-
-footer ul li {
-  float: left;
-  margin-left: 15px;
-}
+// footer {
+//   margin-top: 145px;
+//   padding-top: 5px;
+//   border-top: 1px solid #eaeaea;
+//   color: #777;
+//   background-color: black;
+// }
+//
+//
+// footer a {
+//   color: #555;
+// }
+//
+// footer a:hover {
+//   color: #222;
+// }
+//
+// footer small {
+//   float: left;
+// }
+//
+// footer ul {
+//   float: right;
+//   list-style: none;
+// }
+//
+// footer ul li {
+//   float: left;
+//   margin-left: 15px;
+// }
