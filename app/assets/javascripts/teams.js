@@ -31,7 +31,7 @@ $(document).on('turbolinks:load', function(){
 
       row.append($('<td>').append(action));
 
-      $('tbody').append(row);
+      $('#team_edit').append(row);
     }
     });
 
@@ -65,13 +65,13 @@ $(document).on('turbolinks:load', function(){
 
           row.append($('<td>').append(action));
 
-          $('tbody').append(row);
+          $('#team_edit').append(row);
         }
       });
     }
 
 
- $('tbody').on('click', '.team_button', function(){
+ $('#team_edit').on('click', '.team_button', function(){
 
    var oldRow = $(this).closest('tr');
    var cells = oldRow.find('td');
@@ -123,7 +123,7 @@ $(document).on('turbolinks:load', function(){
 
      row.append($('<td>').append(action));
 
-     $('tbody').append(row);
+     $('#team_edit').append(row);
 
    } else {
      $.ajax({
@@ -140,7 +140,7 @@ $(document).on('turbolinks:load', function(){
    };
  });
 
-  $('tbody').on('click', '.action_button', function(e) {
+  $('#team_edit').on('click', '.action_button', function(e) {
     var oldRow = $(this).closest('tr');
     var cells = oldRow.find('td');
     var sendData = {};
@@ -186,7 +186,7 @@ $(document).on('turbolinks:load', function(){
 
       row.append($('<td>').append(action));
 
-      $('tbody').append(row);
+      $('#team_edit').append(row);
 
 
   });
