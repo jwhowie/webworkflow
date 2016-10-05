@@ -2,7 +2,10 @@
 
 <h1>Process Flows</h1>
 
-<table>
+
+<div id="business-process-name"><b>Process Name</b></div>
+
+<table class="process-table">
   <thead>
     <tr>
       <th>Step</th>
@@ -15,22 +18,9 @@
 
 </tbody>
 
-
-<!-- 
-  <tbody>
-    <% @process_flows.each do |process_flow| %>
-      <tr>
-        <td><%= process_flow.step_number %></td>
-        <td><%= process_flow.step_name %></td>
-        <td><%= process_flow.team %></td>
-        <td><%= link_to 'Show', process_flow %></td>
-        <td><%= link_to 'Edit', edit_process_flow_path(process_flow), class: "btn btn-info", style: "color: white" %></td>
-        <td><%= link_to 'Destroy', process_flow, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning", style: "color: white" %></td>
-      </tr>
-    <% end %>
-  </tbody> -->
 </table>
 
 <br>
 
-<%= link_to 'Back', teams_path, class: "btn btn-primary", style: "color: white" %>
+
+<button class="btn btn-primary" id="back-to-teams">Back</button>

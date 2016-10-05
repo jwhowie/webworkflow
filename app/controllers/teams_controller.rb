@@ -4,11 +4,15 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
   def index
-
+    if(params[:all] == '1')
+      @teams = Team.all
+    else
+      @teams = Team.my_teams(current_user)
+    end
     respond_to do |format|
       # byebug
       format.html
-      format.json { render json: Team.my_teams(current_user) }
+      format.json { render json:  @teams}
     end
 
   end
