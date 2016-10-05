@@ -66,6 +66,8 @@ $(document).on('turbolinks:load', function(){
   // $('button').css('color', 'grey');
   loadTable();
 
+
+
   function loadTable()
   {
     $.ajax({
@@ -107,6 +109,7 @@ $(document).on('turbolinks:load', function(){
       }
 
       });
+      window.setTimeout(loadTable, 10000);
     }
   //});
 
@@ -134,7 +137,8 @@ $(document).on('turbolinks:load', function(){
       cust.append($('<div>').html(responseData[0].email));
 
       var hist = $('#queue-history').val(responseData[0].history_text)
-      $('#queue-comment').val('');
+      //var comment = $('#queue-comment');
+      //$('#queue-comment').val('');
 
     });
   });
