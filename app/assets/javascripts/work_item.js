@@ -72,6 +72,11 @@ $(document).on('turbolinks:load', function(){
 
  }
 
+ $(window).on("beforeunload", function() {
+   window.clearTimeout(window.timer);
+
+});
+
   function loadTable()
   {
     $.ajax({
@@ -115,9 +120,9 @@ $(document).on('turbolinks:load', function(){
       }
 
       });
-      window.setTimeout(loadTable, 10000);
+      window.timer = window.setTimeout(loadTable, 10000);
     }
-  //});
+
 
   $('#queue_table').on('click', 'tr', function(){
     selectedRow = $(this);
