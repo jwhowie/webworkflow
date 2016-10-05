@@ -67,6 +67,25 @@ $(document).on('turbolinks:load', function(){
 
           $('#team_edit').append(row);
         }
+
+        var row = $('<tr>');
+
+        var leader = $('<input>').attr('type', 'text').attr('class', 'team-lead');
+        var email = $('<input>').attr('type', 'text').attr('class', 'team-email');
+        var action = $('<button>').attr('class', 'team_button').html('+');
+
+
+
+
+        row.append($('<td>').append(leader));
+
+        row.append($('<td>').append(email));
+
+        row.append($('<td>').append(action));
+
+        $('#team_edit').append(row);
+
+
       });
     }
 
