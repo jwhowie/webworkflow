@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function(){
-  var newButton = 0;
+  // var newButton = 0;
 
 
   if (window.location.pathname === "/teams") {
@@ -19,7 +19,7 @@ $(document).on('turbolinks:load', function(){
       var team = $('<input>').attr('type', 'text').attr('class', 'team-name').val(responseData[i].title);
       var leader = $('<input>').attr('type', 'text').attr('class', 'team-lead').val(responseData[i].name);
       var email = $('<input>').attr('type', 'text').attr('class', 'team-email').attr('id', responseData[i].user_id).val(responseData[i].email);
-      var action = $('<button>').attr('id', responseData[i].id).attr('class', 'action_button').html('+');
+      var action = $('<button>').attr('id', responseData[i].id).attr('class', 'action_button').html('-');
 
 
 
@@ -54,7 +54,7 @@ $(document).on('turbolinks:load', function(){
 
           var leader = $('<input>').attr('type', 'text').attr('class', 'team-lead').val(responseData[i].name);
           var email = $('<input>').attr('type', 'text').attr('class', 'team-email').attr('id', responseData[i].user_id).val(responseData[i].email);
-          var action = $('<button>').attr('id', responseData[i].id).attr('class', 'team_button').html('+');
+          var action = $('<button>').attr('id', responseData[i].id).attr('class', 'team_button').html('-');
 
 
 
@@ -91,10 +91,11 @@ $(document).on('turbolinks:load', function(){
    sendData['action'] = 2;
    sendData['name'] = cells[0].children[0].value;
    sendData['email'] = cells[1].children[0].value;
+   sendData['team_id'] = window.location.pathname.split('/')[2];
    // sendData['user_id'] = cells[2].attr('id');
    $(this).html(' - ');
 
-
+    window.row = oldRow;
 
    $.ajax({
      url: '/teams',
@@ -104,6 +105,8 @@ $(document).on('turbolinks:load', function(){
      data: {team: sendData}
    }).done(function(responseData){
      console.log(responseData);
+
+     window.row.attr('id', responseData.id);
 
    });
 
@@ -126,6 +129,10 @@ $(document).on('turbolinks:load', function(){
      $('#team_edit').append(row);
 
    } else {
+
+     window.row = oldRow;
+
+
      $.ajax({
 
        url: '/users/' + oldRow.attr('id'),
@@ -136,6 +143,7 @@ $(document).on('turbolinks:load', function(){
 
      }).done(function(){
        console.log('DELTED!');
+       window.row.remove();
      });
    };
  });

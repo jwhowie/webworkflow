@@ -91,12 +91,15 @@ class TeamsController < ApplicationController
         user = User.find_by(email: team_params[:email])
         if user == nil
           user = User.new
+        end
           user.email = team_params[:email]
           user.name = team_params[:name]
-          users.team_id = params[:id]
-        end
-
-
+          user.team_id = team_params[:team_id]
+          user.save
+          respond_to do |format|
+             format.html { redirect_to @team, notice: 'Team was successfully created.' }
+             format.json { render json: user } #, status: :created, location: @team }
+           end
     end
 
 
@@ -143,6 +146,6 @@ class TeamsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
       # byebug
-      params.require(:team).permit(:title, :user, :name, :email, :user_id, :id, :business_process_name, :action, :team_title)
+      params.require(:team).permit(:title, :user, :name, :email, :user_id, :id, :business_process_name, :action, :team_title, :team_id)
     end
 end
