@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function(){
 
-  if (window.location.pathname === "/work_items") {
+  if (window.location.pathname.split('/')[1] === "work_items") {
 
 
     var customerId = ''
