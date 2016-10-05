@@ -54,8 +54,13 @@ function buildEmptyRow() {
 
 
   $('#process_flow_body').on('click', '.process-button', function() {
+
     var oldRow = $(this).closest('tr');
     var cells = oldRow.find('td');
+
+    if ($(this).text() == '+') {
+
+
     var sendData = {};
     if (cells[0].children[0].value === '') {
       return;
@@ -83,6 +88,19 @@ function buildEmptyRow() {
       console.log(responseData);
 
     });
+  }
+  else {
+
+    $.ajax({
+      url: 'process_flows/' + oldRow.attr('id'),
+      method: 'DELETE',
+      dataType: 'html',
+      data: {}
+    }).done(function(){
+      oldRow.remove();
+    });
+
+  }
 
 
   $('#back-to-teams').on('click', function() {
