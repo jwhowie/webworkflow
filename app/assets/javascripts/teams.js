@@ -18,7 +18,7 @@ $(document).on('turbolinks:load', function(){
 
       var team = $('<input>').attr('type', 'text').attr('class', 'team-name').val(responseData[i].title);
       var leader = $('<input>').attr('type', 'text').attr('class', 'team-lead').val(responseData[i].name);
-      var email = $('<input>').attr('type', 'text').attr('class', 'team-email').attr('id', responseData[i].user_id).val(responseData[i].email);
+      var email = $('<input>').attr('type', 'text').attr('class', 'team-email').attr('id', responseData[i].user_id).val(responseData[i].email);;
       var action = $('<button>').attr('id', responseData[i].id).attr('class', 'action_button').html('-');
 
 
@@ -33,8 +33,16 @@ $(document).on('turbolinks:load', function(){
 
       $('#team_edit').append(row);
     }
-    });
 
+
+    });
+    var row = $('<tr>');
+
+    var team = $('<input>').attr('type', 'text').attr('class', 'team-name');
+    var leader = $('<input>').attr('type', 'text').attr('class', 'team-lead');
+    var email = $('<input>').attr('type', 'text').attr('class', 'team-email')
+    var action = $('<button>').attr('class', 'action_button').html('+');
+    $('#team_edit').append(row);
   }
     else{
       team = window.location.pathname.split('/')[2];
