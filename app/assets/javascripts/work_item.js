@@ -1,72 +1,76 @@
 $(document).on('turbolinks:load', function(){
-  var customerId = ''
-  $('#autocomplete').autocomplete({
-    source: function(request, response){
-      console.log(request);
-      $.ajax({
-        url: '/customers?term='+request['term'],
-        method: 'GET',
-        dataType: 'json',
-        data: {}
 
-      }).done(function(responseData){
-        var result = [];
-        var customer = ''
-        for(var i = 0; i < responseData.length; i++){
-          customer = ''
-          customer = responseData[i].first_name + ' ';
-          customer += responseData[i].last_name + ' ';
-          customer += responseData[i].address_1 + ' ';
-          customer += responseData[i].phone;
-          result.push({label:customer, value:responseData[i].id});
-        }
-
-        response(result);
-
-        console.log(response);
-      })
-    },
-    select: function (suggestion, ui) {
-      event.preventDefault();
-      customerId = ui.item.value;
-      this.value = ui.item.label;
-      return false;
-      // $('#autocomplete').val(ui.itme.label);
-      // PK.render(ui.item.value);
-    // some function here
-    console.log(suggestion);
-    },
-    focus: function(event, ui) {
-      event.preventDefault();
-      $("#autocomplete").val(ui.item.label);
-  }
-  });
+  if (window.location.pathname === "/work_items") {
 
 
+    var customerId = ''
+    $('#autocomplete').autocomplete({
+      source: function(request, response){
+        console.log(request);
+        $.ajax({
+          url: '/customers?term='+request['term'],
+          method: 'GET',
+          dataType: 'json',
+          data: {}
+
+        }).done(function(responseData){
+          var result = [];
+          var customer = ''
+          for(var i = 0; i < responseData.length; i++){
+            customer = ''
+            customer = responseData[i].first_name + ' ';
+            customer += responseData[i].last_name + ' ';
+            customer += responseData[i].address_1 + ' ';
+            customer += responseData[i].phone;
+            result.push({label:customer, value:responseData[i].id});
+          }
+
+          response(result);
+
+          console.log(response);
+        })
+      },
+      select: function (suggestion, ui) {
+        event.preventDefault();
+        customerId = ui.item.value;
+        this.value = ui.item.label;
+        return false;
+        // $('#autocomplete').val(ui.itme.label);
+        // PK.render(ui.item.value);
+      // some function here
+      console.log(suggestion);
+      },
+      focus: function(event, ui) {
+        event.preventDefault();
+        $("#autocomplete").val(ui.item.label);
+    }
+    });
+
+
+      // $('#autocomplete').autocomplete({
+      //   source: currencies,
+      //   onSelect: function (suggestion) {
+      //   // some function here
+      //   }
+      // });
+
+    // setup autocomplete function pulling from currencies[] array
     // $('#autocomplete').autocomplete({
-    //   source: currencies,
+    //   lookup: currencies,
     //   onSelect: function (suggestion) {
-    //   // some function here
+    //     var thehtml = '<strong>Currency Name:</strong> ' + suggestion.value + ' <br> <strong>Symbol:</strong> ' + suggestion.data;
+    //     $('#outputcontent').html(thehtml);
     //   }
     // });
 
-  // setup autocomplete function pulling from currencies[] array
-  // $('#autocomplete').autocomplete({
-  //   lookup: currencies,
-  //   onSelect: function (suggestion) {
-  //     var thehtml = '<strong>Currency Name:</strong> ' + suggestion.value + ' <br> <strong>Symbol:</strong> ' + suggestion.data;
-  //     $('#outputcontent').html(thehtml);
-  //   }
-  // });
 
+    var selectedRow = '';
+    var id = '';
+    // $('button').prop('disabled', true);
+    // $('button').css('color', 'grey');
+    loadTable();
 
-  var selectedRow = '';
-  var id = '';
-  // $('button').prop('disabled', true);
-  // $('button').css('color', 'grey');
-  loadTable();
-
-
+ }
 
   function loadTable()
   {
@@ -102,7 +106,9 @@ $(document).on('turbolinks:load', function(){
 
       if (id != '' && $('#'+id).length){
         var lastRow = $('#'+id);
+        var comment = $('#queue-comment').val()
         lastRow.trigger('click');
+        $('#queue-comment').val(comment);
       }
       else {
         firstRow.trigger('click');
@@ -113,7 +119,7 @@ $(document).on('turbolinks:load', function(){
     }
   //});
 
-  $('table').on('click', 'tr', function(){
+  $('#queue_table').on('click', 'tr', function(){
     selectedRow = $(this);
     id = selectedRow.attr('id');
     // $('button').prop('disabled', false);
