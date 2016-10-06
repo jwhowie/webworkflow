@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function(){
-  selectedRow = '';
-  customerId = ''
+  var selectedRow = '';
+  var customerId = ''
 
 
   var id = '';
