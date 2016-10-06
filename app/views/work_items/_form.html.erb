@@ -1,18 +1,33 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h4 class="modal-title">New Work Item</h4>
+    </div>
+    <div class="modal-body">
 
 
 
-
-  <div id="searchfield">
-
-
-<form><input type="text" name="user" class="biginput" id="autocomplete" placeholder="Search by Customer Last Name"></form>
-</div>
-<h4>Comment:</h4>
-<button id='queue-forward' class='queue-button btn btn-primary'>Forward</button>
-<button id='queue-save' class='queue-button btn btn-primary'>Save</button>
-<button id='work-item-cancel' class='queue-button btn btn-primary'>Cancel</button>
-<div>
+      <div id="searchfield">
 
 
-<textarea rows="10" cols="50" id='queue-comment'></textarea>
+        <form><input type="text" name="user" class="biginput" id="autocomplete" placeholder="Search by Customer Last Name"></form>
+      </div>
+      <div>
+
+
+        <h4>Comment:</h4>
+        <button id='queue-forward-modal' class='queue-button btn btn-primary'>Forward</button>
+        <!-- <button id='queue-save' class='queue-button btn btn-primary'>Save</button> -->
+        <button id='work-item-cancel' class='queue-button btn btn-primary'>Cancel</button>
+      </div>
+      <div>
+        <textarea rows="10" cols="50" id='queue-comment-modal'></textarea>
+      </div>
+      <div class="modal-footer">
+        <!-- <button id='save-customer' class="btn btn-default" data-dismiss="modal">Save</button> -->
+      </div>
+    </div>
+  </div>
 </div>

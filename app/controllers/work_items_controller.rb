@@ -19,6 +19,10 @@ class WorkItemsController < ApplicationController
   # GET /work_items/new
   def new
     @work_item = WorkItem.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /work_items/1/edit

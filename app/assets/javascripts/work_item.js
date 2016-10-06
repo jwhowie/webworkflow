@@ -2,47 +2,6 @@ $(document).on('turbolinks:load', function(){
 
   if (window.location.pathname.split('/')[1] === "work_items") {
     var customerId = ''
-    $('#autocomplete').autocomplete({
-      source: function(request, response){
-        console.log(request);
-        $.ajax({
-          url: '/customers?term='+request['term'],
-          method: 'GET',
-          dataType: 'json',
-          data: {}
-
-        }).done(function(responseData){
-          var result = [];
-          var customer = ''
-          for(var i = 0; i < responseData.length; i++){
-            customer = ''
-            customer = responseData[i].first_name + ' ';
-            customer += responseData[i].last_name + ' ';
-            customer += responseData[i].address_1 + ' ';
-            customer += responseData[i].phone;
-            result.push({label:customer, value:responseData[i].id});
-          }
-
-          response(result);
-
-          console.log(response);
-        })
-      },
-      select: function (suggestion, ui) {
-        event.preventDefault();
-        customerId = ui.item.value;
-        this.value = ui.item.label;
-        return false;
-        // $('#autocomplete').val(ui.itme.label);
-        // PK.render(ui.item.value);
-      // some function here
-      console.log(suggestion);
-      },
-      focus: function(event, ui) {
-        event.preventDefault();
-        $("#autocomplete").val(ui.item.label);
-    }
-    });
 
     var selectedRow = '';
     var id = '';
@@ -143,54 +102,9 @@ $(document).on('turbolinks:load', function(){
 
   });
 
-  function saveComments(action){
-    var comment = $('#queue-comment');
-    if(comment.val() === '') {
-      return;
-    }
-    var sendData = {};
-    sendData['action'] =  action;
-    sendData['comment'] = comment.val();
-    sendData['work_item_key'] = selectedRow.attr('id');
-    console.log(sendData);
-    $.ajax({
-       url: '/work_items/' + selectedRow.attr('id'),
-      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-      method: 'PATCH',
-      dataType: 'json',
-      data: {work_item: sendData}
-    }).done(function(){
-      $('#queue-body').empty();
-      loadTable();
-    });
 
-  }
 
-  function postComments(action){
-    var pair = window.location.search.split('=')
 
-    var comment = $('#queue-comment');
-    if(comment.val() === '') {
-      return;
-    }
-    var sendData = {};
-    sendData['action'] =  action;
-    sendData['comment'] = comment.val();
-    sendData['processKey'] = pair[1];
-    sendData['customer'] = customerId
-    console.log(sendData);
-    $.ajax({
-       url: '/work_items/',
-      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-      method: 'POST',
-      dataType: 'json',
-      data: {work_item: sendData}
-    }).done(function(){
-      $('#queue-body').empty();
-      loadTable();
-    });
-
-  }
 
   $('#queue-escalate').on('click', function(){
     if($(comment).val === '') {
@@ -202,7 +116,7 @@ $(document).on('turbolinks:load', function(){
       saveComments(2);
     }
     else {
-      postComments(2);
+    //  post Comments(2);
     }
   });
 
@@ -216,8 +130,8 @@ $(document).on('turbolinks:load', function(){
       saveComments(3);
     }
     else {
-      postComments(3);
-      window.location.href = '/work_items';
+    //  post Comments(3);
+    //  window.location.href = '/work_items';
     }
   });
 
@@ -232,7 +146,7 @@ $(document).on('turbolinks:load', function(){
     }
     else {
 
-      postComments(4);
+    //  post Comments(4);
       window.location.href = '/work_items';
     }
   });
@@ -246,3 +160,26 @@ $(document).on('turbolinks:load', function(){
   });
 
 });
+
+function saveComments(action){
+  var comment = $('#queue-comment');
+  if(comment.val() === '') {
+    return;
+  }
+  var sendData = {};
+  sendData['action'] =  action;
+  sendData['comment'] = comment.val();
+  sendData['work_item_key'] = selectedRow.attr('id');
+  console.log(sendData);
+  $.ajax({
+     url: '/work_items/' + selectedRow.attr('id'),
+    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+    method: 'PATCH',
+    dataType: 'json',
+    data: {work_item: sendData}
+  }).done(function(){
+    $('#queue-body').empty();
+    loadTable();
+  });
+
+}

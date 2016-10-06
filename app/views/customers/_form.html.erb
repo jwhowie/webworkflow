@@ -1,86 +1,86 @@
-   <div class="modal-dialog">
-     <div class="modal-content">
-       <div class="modal-header">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+  
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h4 class="modal-title">New Customer</h4>
+    </div>
+    <div class="modal-body">
 
-         <button type="button" class="close" data-dismiss="modal">&times;</button>
-         <h4 class="modal-title">New Customer</h4>
-       </div>
-       <div class="modal-body">
-
-<%= form_for(@customer) do |f| %>
-  <% if @customer.errors.any? %>
+    <%= form_for(@customer) do |f| %>
+    <% if @customer.errors.any? %>
     <div id="error_explanation">
       <h2><%=pluralize(@customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
 
       <ul>
       <% @customer.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <li><%= message %></li>
       <% end %>
       </ul>
     </div>
-  <% end %>
+    <% end %>
 
 
-  <div class="row">
+    <div class="row">
 
-     <div class="form-group col-lg-12">
-         <%= f.label :name %>
-     </div>
-     <div class="form-group col-lg-12">
+      <div class="form-group col-lg-12">
+        <%= f.label :name %>
+      </div>
+        <div class="form-group col-lg-12">
         <%= f.text_field :first_name,placeholder: "First Name", class: "form-control" %>
-          <%= f.text_field :last_name, placeholder: "Last Name", class: "form-control" %>
-     </div>
-  </div>
+        <%= f.text_field :last_name, placeholder: "Last Name", class: "form-control" %>
+        </div>
+      </div>
 
-  <div class="row">
-    <div class="form-group col-lg-12">
-      <%= f.label :address %>
-     </div>
-     <div class="form-group col-lg-12">
-      <%= f.text_field :address_1, placeholder:"Street Address", class: "form-control" %>
-      <%= f.text_field :address_2, placeholder: "Street Address Line 2", class: "form-control"%>
+    <div class="row">
+      <div class="form-group col-lg-12">
+        <%= f.label :address %>
+      </div>
+      <div class="form-group col-lg-12">
+        <%= f.text_field :address_1, placeholder:"Street Address", class: "form-control" %>
+        <%= f.text_field :address_2, placeholder: "Street Address Line 2", class: "form-control"%>
+      </div>
     </div>
-  </div>
 
-  <div class="row">
+    <div class="row">
       <div class="form-group col-lg-12">
         <%= f.label :city %>
       </div>
       <div class="form-group col-lg-12">
         <%= f.text_field :city, class: "form-control", class: "form-control" %>
       </div>
-  </div>
+      </div>
 
-  <div class="row">
+    <div class="row">
       <div class="form-group col-lg-12">
         <%= f.label :email %>
       </div>
       <div class="form-group col-lg-12">
         <%= f.email_field :email, class: "form-control" %>
       </div>
-  </div>
+    </div>
 
-  <div class="row">
+    <div class="row">
       <div class="form-group col-lg-12">
-          <%= f.label :phone %>
+      <%= f.label :phone %>
       </div>
       <div class="form-group col-lg-12">
-         <%= f.telephone_field :phone, class: "form-control" %>
+        <%= f.telephone_field :phone, class: "form-control" %>
       </div>
-  </div>
+    </div>
 
 
-  <div class="actions">
+    <div class="actions">
     <!-- <#%= f.submit class: "btn btn-default" %>  -->
-  </div>
-  <div class="modal-footer">
+    </div>
+    <div class="modal-footer">
     <button id='save-customer' class="btn btn-default" data-dismiss="modal">Save</button>
+    </div>
+    <% end %>
+
+
+    </div>
+
   </div>
-<% end %>
 
-
-       </div>
-
-     </div>
-
-   </div>
+</div>
