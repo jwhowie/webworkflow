@@ -31,8 +31,10 @@
 
       <%= link_to 'New Customer', new_customer_path,  {:remote => true,  'data-target' => '#myModal'}  %>
     </li>
-    <% if current_user && my_team.user == current_user %>
+    <% if current_user && my_team.user %>
+       <% if my_team.user == current_user %>
     <li role='presentation'><%=  link_to 'Edit my team', edit_team_path(my_team.id) %></li>
+    <% end %>
     <% end %>
     <div id='dynamic-items'></div>
 

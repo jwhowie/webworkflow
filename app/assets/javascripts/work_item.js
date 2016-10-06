@@ -1,8 +1,6 @@
 $(document).on('turbolinks:load', function(){
 
   if (window.location.pathname.split('/')[1] === "work_items") {
-
-
     var customerId = ''
     $('#autocomplete').autocomplete({
       source: function(request, response){
@@ -46,24 +44,6 @@ $(document).on('turbolinks:load', function(){
     }
     });
 
-
-      // $('#autocomplete').autocomplete({
-      //   source: currencies,
-      //   onSelect: function (suggestion) {
-      //   // some function here
-      //   }
-      // });
-
-    // setup autocomplete function pulling from currencies[] array
-    // $('#autocomplete').autocomplete({
-    //   lookup: currencies,
-    //   onSelect: function (suggestion) {
-    //     var thehtml = '<strong>Currency Name:</strong> ' + suggestion.value + ' <br> <strong>Symbol:</strong> ' + suggestion.data;
-    //     $('#outputcontent').html(thehtml);
-    //   }
-    // });
-
-
     var selectedRow = '';
     var id = '';
     // $('button').prop('disabled', true);
@@ -77,8 +57,7 @@ $(document).on('turbolinks:load', function(){
 
 });
 
-  function loadTable()
-  {
+  function loadTable(){
     $.ajax({
       url: '/work_items',
       method: 'GET',
@@ -140,14 +119,20 @@ $(document).on('turbolinks:load', function(){
       console.log(responseData);
       cust = $('#customer-info');
       cust.empty();
-      cust.append($('<div>').html(responseData[0].name));
+      cust.append($('<div>').attr('id', responseData[0].step_number).html(responseData[0].name));
       cust.append($('<div>').html(responseData[0].address_1));
       cust.append($('<div>').html(responseData[0].address_2));
       cust.append($('<div>').html(responseData[0].city));
       cust.append($('<div>').html(responseData[0].phone));
       cust.append($('<div>').html(responseData[0].email));
 
-      var hist = $('#queue-history').val(responseData[0].history_text)
+      var hist = $('#queue-history').val(responseData[0].history_text);
+      if(responseData[0].step_number == '1') {
+         $("#queue-back").prop("disabled", true)//.removeClass('btn-primary').addClass('btn-disabled');
+      }
+      else {
+        $("#queue-back").prop("disabled", false)//.removeClass();
+      }
       //var comment = $('#queue-comment');
       //$('#queue-comment').val('');
 
@@ -158,9 +143,11 @@ $(document).on('turbolinks:load', function(){
 
   });
 
-  function saveComments(action)
-  {
+  function saveComments(action){
     var comment = $('#queue-comment');
+    if(comment.val() === '') {
+      return;
+    }
     var sendData = {};
     sendData['action'] =  action;
     sendData['comment'] = comment.val();
@@ -179,11 +166,13 @@ $(document).on('turbolinks:load', function(){
 
   }
 
-  function postComments(action)
-  {
+  function postComments(action){
     var pair = window.location.search.split('=')
 
     var comment = $('#queue-comment');
+    if(comment.val() === '') {
+      return;
+    }
     var sendData = {};
     sendData['action'] =  action;
     sendData['comment'] = comment.val();
@@ -204,6 +193,9 @@ $(document).on('turbolinks:load', function(){
   }
 
   $('#queue-escalate').on('click', function(){
+    if($(comment).val === '') {
+      return;
+    }
     var pair = window.location.search.split('=')
     if (pair[0] === "")
     {
@@ -215,6 +207,9 @@ $(document).on('turbolinks:load', function(){
   });
 
   $('#queue-forward').on('click', function(){
+    if($(comment).val === '') {
+      return;
+    }
     var pair = window.location.search.split('=')
     if (pair[0] === "")
     {
@@ -222,10 +217,14 @@ $(document).on('turbolinks:load', function(){
     }
     else {
       postComments(3);
+      window.location.href = '/work_items';
     }
   });
 
   $('#queue-save').on('click', function(){
+    if($(comment).val === '') {
+      return;
+    }
     var pair = window.location.search.split('=')
     if (pair[0] === "")
     {
@@ -234,7 +233,12 @@ $(document).on('turbolinks:load', function(){
     else {
 
       postComments(4);
+      window.location.href = '/work_items';
     }
+  });
+
+  $('#work-item-cancel').on('click', function(){
+    window.location.href = '/work_items';
   });
 
   $('#myModal').on('click', '#save-customer', function(){

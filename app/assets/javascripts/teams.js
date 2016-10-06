@@ -21,29 +21,28 @@ $(document).on('turbolinks:load', function(){
       var email = $('<input>').attr('type', 'text').attr('class', 'team-email').attr('id', responseData[i].user_id).val(responseData[i].email);;
       var action = $('<button>').attr('id', responseData[i].id).attr('class', 'action_button').html('-');
 
-
-
       row.append($('<td>').append(team));
-
       row.append($('<td>').append(leader));
-
       row.append($('<td>').append(email));
-
       row.append($('<td>').append(action));
 
       $('#team_edit').append(row);
     }
+      var row = $('<tr>');
 
+      var team = $('<input>').attr('type', 'text').attr('class', 'team-name');
+      var leader = $('<input>').attr('type', 'text').attr('class', 'team-lead');
+      var email = $('<input>').attr('type', 'text').attr('class', 'team-email');
+      var action = $('<button>').attr('class', 'action_button').html('+');
 
+      row.append($('<td>').append(team));
+      row.append($('<td>').append(leader));
+      row.append($('<td>').append(email));
+      row.append($('<td>').append(action));
+
+      $('#team_edit').append(row);
     });
-    var row = $('<tr>');
-
-    var team = $('<input>').attr('type', 'text').attr('class', 'team-name');
-    var leader = $('<input>').attr('type', 'text').attr('class', 'team-lead');
-    var email = $('<input>').attr('type', 'text').attr('class', 'team-email')
-    var action = $('<button>').attr('class', 'action_button').html('+');
-    $('#team_edit').append(row);
-  }
+    }
     else{
       team = window.location.pathname.split('/')[2];
       $.ajax({
@@ -56,16 +55,13 @@ $(document).on('turbolinks:load', function(){
         var team = $('<input>').attr('type', 'text').attr('class', 'team-title').attr('id', responseData[0].team_id).val(responseData[0].title);
 
         $('#team_name').append(team);
-
+        $('#team_edit').empty();
         for (var i = 0; i < responseData.length; i++){
           var row = $('<tr>').attr('id', responseData[i].team_user_id);
 
           var leader = $('<input>').attr('type', 'text').attr('class', 'team-lead').val(responseData[i].name);
           var email = $('<input>').attr('type', 'text').attr('class', 'team-email').attr('id', responseData[i].user_id).val(responseData[i].email);
           var action = $('<button>').attr('id', responseData[i].id).attr('class', 'team_button').html('-');
-
-
-
 
           row.append($('<td>').append(leader));
 
@@ -81,12 +77,7 @@ $(document).on('turbolinks:load', function(){
         var leader = $('<input>').attr('type', 'text').attr('class', 'team-lead');
         var email = $('<input>').attr('type', 'text').attr('class', 'team-email');
         var action = $('<button>').attr('class', 'team_button').html('+');
-
-
-
-
         row.append($('<td>').append(leader));
-
         row.append($('<td>').append(email));
 
         row.append($('<td>').append(action));
