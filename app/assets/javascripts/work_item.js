@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function(){
-  window.selectedRow = '';
-  window.customerId = ''
+  selectedRow = '';
+  customerId = ''
 
 
   var id = '';
@@ -64,14 +64,14 @@ $(document).on('turbolinks:load', function(){
 
 
   $('#queue_table').on('click', 'tr', function(){
-    window.selectedRow = $(this);
-    id = window.selectedRow.attr('id');
+    selectedRow = $(this);
+    id = selectedRow.attr('id');
     // $('button').prop('disabled', false);
     // $('button').css('color', 'black');
     $('tr').css('background-color', '');
-    window.selectedRow.css('background-color', 'aqua');
+    selectedRow.css('background-color', 'aqua');
     $.ajax({
-      url: '/work_items/' + window.selectedRow.attr('id') + '/edit',
+      url: '/work_items/' + selectedRow.attr('id') + '/edit',
       method: 'GET',
       dataType: 'json',
       data: {}
@@ -159,7 +159,7 @@ $(document).on('turbolinks:load', function(){
   $('#myModal').on('click', '#save-customer', function(){
     $('.new_customer').submit();
   });
-  
+
   function saveComments(action){
     var comment = $('#queue-comment');
     if(comment.val() === '') {
@@ -168,10 +168,10 @@ $(document).on('turbolinks:load', function(){
     var sendData = {};
     sendData['action'] =  action;
     sendData['comment'] = comment.val();
-    sendData['work_item_key'] = window.selectedRow.attr('id');
+    sendData['work_item_key'] = selectedRow.attr('id');
     console.log(sendData);
     $.ajax({
-       url: '/work_items/' + window.selectedRow.attr('id'),
+       url: '/work_items/' + selectedRow.attr('id'),
       beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
       method: 'PATCH',
       dataType: 'json',
