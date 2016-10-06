@@ -18,6 +18,7 @@
  *= require teams
  *= require work_items
  *= require jquery-ui
+ *= require scaffolds
 
  *= require sticky-footer
  *= require_self

@@ -1,13 +1,7 @@
 
 $(document).on('turbolinks:load', function(){
   $("#workItemModal").on('shown.bs.modal', function () {
-
-
-
-
-
-
-    var customerId = ''
+    window.customerId = ''
     $('#autocomplete').autocomplete({
       source: function(request, response){
         console.log(request);
@@ -36,7 +30,7 @@ $(document).on('turbolinks:load', function(){
       },
       select: function (suggestion, ui) {
         event.preventDefault();
-        customerId = ui.item.value;
+        window.customerId = ui.item.value;
         this.value = ui.item.label;
         return false;
         // $('#autocomplete').val(ui.itme.label);
@@ -59,7 +53,8 @@ $(document).on('turbolinks:load', function(){
       }
 
         postComments(3);
-        window.location.href = '/work_items';
+        $('#workItemModal').modal('hide');
+        //window.location.href = '/work_items';
       });
     });
 
@@ -70,6 +65,7 @@ $(document).on('turbolinks:load', function(){
 
     function postComments(action){
       var pair = window.location.search.split('=')
+      var business_processes_id =   $('#workItemModal').data('business-process-id');
 
       var comment = $('#queue-comment-modal');
       if(comment.val() === '') {
@@ -79,7 +75,8 @@ $(document).on('turbolinks:load', function(){
       sendData['action'] =  action;
       sendData['comment'] = comment.val();
       sendData['processKey'] = pair[1];
-      sendData['customer'] = customerId
+      sendData['customer'] = window.customerId
+      sendData['business_processes_id'] = business_processes_id;
       console.log(sendData);
       $.ajax({
          url: '/work_items/',
@@ -116,11 +113,21 @@ $(document).on('turbolinks:load', function(){
         .attr('tabindex', '-1')
         .attr('data-remote', true)
         .attr('data-target', '#workItemModal')
+        .attr('class', 'dynamic-menu-item')
+        .data('business-process-id', responseData[i].id)
         .html(responseData[i].title);
 
         listItem.append(href);
         listItem.insertAfter(menuPlaceHolder);
+        //$('#workItemModal').data('business-process-id', responseData[i].id);
         // $('.dropdown-toggle').dropdown();
     }
   });
+
+  $('li').on('click', '.dynamic-menu-item', function(){
+    var process_id = $(this).data('business-process-id');
+      $('#workItemModal').data('business-process-id', process_id);
+
+  });
+
 });

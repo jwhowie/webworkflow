@@ -5,7 +5,7 @@ class WorkItem < ApplicationRecord
   belongs_to :user, optional: true
 
   def create_work_item(params, creator)
-  self.process_flow = BusinessProcess.get_first_step(params[:processKey])
+  self.process_flow = BusinessProcess.get_first_step(params[:business_processes_id])
   self.team = self.process_flow.team
   self.user = self.process_flow.team.user
   self.customer_id = params[:customer]
@@ -18,7 +18,7 @@ class WorkItem < ApplicationRecord
   end
 
   def update_action(params)
-
+    
   #@history_text = params[:comment]
   #super(params)
   user_name = user.name
@@ -36,7 +36,6 @@ class WorkItem < ApplicationRecord
   newaction = 'finished'
   end
   build_history(user_name, newaction, actiontitle, from_team, params[:comment])
-
   self.save
 
   return true
@@ -67,12 +66,12 @@ class WorkItem < ApplicationRecord
 
 
   if self.process_flow != nil
-  self.team_id = self.process_flow.team_id
+    self.team_id = self.process_flow.team_id
   else
-  self.team_id = nil
-  self.user_id = nil
+    self.team_id = nil
+    self.user_id = nil
   end
-  self.moved_to_queue = Time.now.getutc
+    self.moved_to_queue = Time.now.getutc
   return 'forward';
   end
 
