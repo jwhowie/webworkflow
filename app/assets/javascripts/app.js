@@ -2,6 +2,12 @@
 $(document).on('turbolinks:load', function(){
   $("#workItemModal").on('shown.bs.modal', function () {
 
+
+
+
+
+
+    var customerId = ''
     $('#autocomplete').autocomplete({
       source: function(request, response){
         console.log(request);
@@ -41,7 +47,8 @@ $(document).on('turbolinks:load', function(){
       focus: function(event, ui) {
         event.preventDefault();
         $("#autocomplete").val(ui.item.label);
-    }
+    },
+    appendTo : "#autoCompleteParent"
     });
 
 
