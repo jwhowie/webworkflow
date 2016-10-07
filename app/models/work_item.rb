@@ -18,7 +18,7 @@ class WorkItem < ApplicationRecord
   end
 
   def update_action(params)
-    
+
   #@history_text = params[:comment]
   #super(params)
   user_name = user.name
@@ -97,7 +97,7 @@ class WorkItem < ApplicationRecord
   where work_items.team_id = teams.id and
   work_items.customer_id = customers.id and
   work_items.user_id = users.id and
-  work_items.process_flow_id = process_flows.id"
+  work_items.process_flow_id = process_flows.id order by work_items.created_at"
 
   return result = ActiveRecord::Base.connection.execute(get_queue).to_json
   end

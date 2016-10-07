@@ -25,6 +25,7 @@ $(document).on('turbolinks:load', function(){
       data: {}
     }).done(function(responseData){
       var firstRow;
+      $('#queue-body').empty();
       for(var i = 0; i < responseData.length; i++)
       {
         var body = $('#queue-body');
