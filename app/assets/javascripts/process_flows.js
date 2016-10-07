@@ -3,14 +3,21 @@ $(document).on('turbolinks:load', function(){
 
   if (window.location.pathname === "/process_flows") {
 
-  var x = window.location.search.split('&');
+  x = window.location.search.split('&');
    window.id = x[0].split('=');
-  title = x[1].split('=');
+  var  y = decodeURIComponent(window.location.search)
+  title = y.split('=');
+
   var teams = [];
   window.teams = teams;
+  //
+  // titleArray = title.split('20');
+  // for (var i = 0; i < title.length; i++) {
+  //   title = titleArray[i] } ' ';
+  // }
 
   $('.process-table').attr('id', id[1]);
-  $('#business-process-name').html('<b>Process Name: </b>' + title[1]);
+  $('#business-process-name').html('<b>Process Name: </b>' + title[2]);
 
   // var row = $('<tr>');
   // var step = $('<input>').attr('type', 'text').attr('class', 'step-name');
