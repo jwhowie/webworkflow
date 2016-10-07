@@ -2,7 +2,7 @@
 
 
 class ProcessFlowsController < ApplicationController
-  before_action :set_process_flow, only: [:show, :edit, :update, :destroy]
+  before_action :set_process_flow, only: [:show, :edit, :destroy]
 
   # GET /process_flows
   # GET /process_flows.json
@@ -57,6 +57,7 @@ class ProcessFlowsController < ApplicationController
   # PATCH/PUT /process_flows/1
   # PATCH/PUT /process_flows/1.json
   def update
+
     b_process_id  = params['business_process_id']
     params['process_flow'].each do |key, process_json|
       if process_json['id'] == nil

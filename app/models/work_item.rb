@@ -6,12 +6,19 @@ class WorkItem < ApplicationRecord
 
   def create_work_item(params, creator)
   self.process_flow = BusinessProcess.get_first_step(params[:business_processes_id])
+
   self.team = self.process_flow.team
+
   self.user = self.process_flow.team.user
+
   self.customer_id = params[:customer]
+
   self.moved_to_queue = Time.now.getutc
+
   build_history(creator.name, self.process_flow.step_name, "created new", self.team.title, params[:comment])
+
   self.save
+
   if params[:action] != 4
   update_action(params)
   end
@@ -67,6 +74,7 @@ class WorkItem < ApplicationRecord
 
   if self.process_flow != nil
     self.team_id = self.process_flow.team_id
+    self.user_id = self.process_flow.team.user_id
   else
     self.team_id = nil
     self.user_id = nil
@@ -86,7 +94,7 @@ class WorkItem < ApplicationRecord
 
   end
 
-  def self.get_user_queue
+  def self.get_user_queue(user)
   get_queue = "select concat(concat(concat(concat(concat(concat(customers.first_name, ' '),  customers.last_name), ' '), customers.phone), ' '), customers.email) as contact_info,
   to_char(work_items.moved_to_queue, 'MM-DD-YY HH12:MI') as moved_to_queue,
   to_char(work_items.created_at, 'MM-DD-YY HH12:MI') as created_at,
@@ -97,7 +105,7 @@ class WorkItem < ApplicationRecord
   where work_items.team_id = teams.id and
   work_items.customer_id = customers.id and
   work_items.user_id = users.id and
-  work_items.process_flow_id = process_flows.id order by work_items.created_at"
+  work_items.process_flow_id = process_flows.id and work_items.team_id = #{user.team_id} order by work_items.created_at"
 
   return result = ActiveRecord::Base.connection.execute(get_queue).to_json
   end

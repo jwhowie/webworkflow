@@ -120,9 +120,9 @@ function buildEmptyRow() {
       process_flows = {};
       process_flows['business_process_id'] =  window.id[1];
       process_flows['process_flow'] = [];
-      rows.each(function (i, row){
-
-        row = $(row);
+      for(var i = 0; i < rows.length; i ++){
+        var row = $(rows[i]);
+        //row = $(row);
         var cells = row.find('td');
         if(cells[0].children[0].value != '')
         {
@@ -133,17 +133,19 @@ function buildEmptyRow() {
           process['step_number'] = i + 1;
           process_flows['process_flow'].push(process);
         }
-      })
+      }
 
       $.ajax({
         url: '/process_flows/' + window.id[1],
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
         method: 'PATCH',
         dataType: 'json',
         data: process_flows
       }). done(function(responseData){
         console.log(responseData);
+        window.location.href = '/work_items';
       });
-      window.location.href = '/work_items';
+
 
       //console.log(process_flows);
   });

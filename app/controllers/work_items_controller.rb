@@ -7,7 +7,7 @@ class WorkItemsController < ApplicationController
     @work_items = WorkItem.all
     respond_to do |format|
       format.html
-      format.json { render json: WorkItem.get_user_queue } #@pokemons.as_json(only: [:name, :image_url]) }
+      format.json { render json: WorkItem.get_user_queue(current_user) } #@pokemons.as_json(only: [:name, :image_url]) }
     end
   end
 
