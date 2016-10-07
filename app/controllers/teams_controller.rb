@@ -4,8 +4,9 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
   def index
-    if(params[:all] == '1')
-      @teams = Team.all
+
+    if params[:all] == '1'
+      @teams = Team.all_teams
     else
       @teams = Team.my_teams(current_user)
     end
@@ -40,6 +41,7 @@ class TeamsController < ApplicationController
   # POST /teams
   # POST /teams.json
   def create
+
     if team_params[:action] == '1'
       user = User.find_by(email: team_params[:email])
       if user == nil
@@ -88,6 +90,7 @@ class TeamsController < ApplicationController
   #     end
 
       elsif team_params[:action] == '2'
+
         user = User.find_by(email: team_params[:email])
         if user == nil
           user = User.new

@@ -26,12 +26,12 @@
     <button class="nav dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Menu
     <span class="caret"></span></button>
     <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="/teams">New Business Process</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="/teams?all=1">New Business Process</a></li>
     <li role="presentation">
 
       <%= link_to 'New Customer', new_customer_path,  {:remote => true,  'data-target' => '#myModal'}  %>
     </li>
-    <% if current_user && my_team.user %>
+    <% if current_user && my_team %>
        <% if my_team.user == current_user %>
     <li role='presentation'><%=  link_to 'Edit my team', edit_team_path(my_team.id) %></li>
     <% end %>
