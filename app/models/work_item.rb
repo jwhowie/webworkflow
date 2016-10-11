@@ -106,7 +106,7 @@ class WorkItem < ApplicationRecord
   work_items.customer_id = customers.id and
   work_items.user_id = users.id and
   work_items.process_flow_id = process_flows.id and work_items.team_id = #{user.team_id} order by work_items.created_at"
-
+ 
   return result = ActiveRecord::Base.connection.execute(get_queue).to_json
   end
 

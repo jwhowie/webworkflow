@@ -49,7 +49,7 @@ class TeamsController < ApplicationController
       end
 
       user.name = team_params[:name]
-      user.email = team_params[:email]
+      user.email = team_params[:email].downcase
       user.save
 
       team = Team.new
@@ -95,7 +95,7 @@ class TeamsController < ApplicationController
         if user == nil
           user = User.new
         end
-          user.email = team_params[:email]
+          user.email = team_params[:email].downcase
           user.name = team_params[:name]
           user.team_id = team_params[:team_id]
           user.save
