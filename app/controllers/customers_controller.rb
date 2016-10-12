@@ -13,8 +13,11 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.json
   def show
+    #@results = []
     @results = WorkItem.get_work_item_status(params[:id])
-
+    if @results == nil
+      @results = []
+    end
 
   end
 

@@ -14,11 +14,27 @@
 
 
 
-<tbody id='queue-body' >
-  <% @result.each do |item|%>
-  <%= <tr><td>item["status"]</td><td>item["title"]</td><td>item["created_at"]</td>  </tr>%>
-  <% end%>
+<tbody id='status-body' >
+  <% @results.each do |item|%>
+  <tr class='status-row' data-work-history="
+  <%= item['history_text'] %>
+   "><td>
+    <%= item["status"] %>
+  </td><td>
+    <%= item["title"] %>
+    </td><td>
+    <%= item["created_at"] %>
+    </td>
+  </tr>
+  <% end %>
 
 </tbody>
 
 </table>
+
+<div>
+  <div>
+    <h4>History:</h4>
+  </div>
+  <textarea rows="6" cols="50" id='status-history' readonly> </textarea>
+</div>
