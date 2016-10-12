@@ -13,6 +13,17 @@
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
         <%= link_to image_tag("logo.png"), '/', id: "logo" %>
+
+
+            <div id="searchfield">
+
+
+              <form id='autoCompleteParent'><input type="text" name="user" class="biginput ui-autocomplete-input" id="autocomplete" placeholder="Search by Customer Last Name"></form>
+            </div>
+
+
+
+
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <% if current_user %>
@@ -75,6 +86,7 @@
     </div>
     <div class="modal fade" id="workItemModal" data='' role="dialog">
     </div>
+
 
   </body>
 </html>
