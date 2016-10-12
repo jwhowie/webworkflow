@@ -3,14 +3,21 @@ $(document).on('turbolinks:load', function(){
 
   if (window.location.pathname === "/process_flows") {
 
-  var x = window.location.search.split('&');
+  x = window.location.search.split('&');
    window.id = x[0].split('=');
-  title = x[1].split('=');
+  var  y = decodeURIComponent(window.location.search)
+  title = y.split('=');
+
   var teams = [];
   window.teams = teams;
+  //
+  // titleArray = title.split('20');
+  // for (var i = 0; i < title.length; i++) {
+  //   title = titleArray[i] } ' ';
+  // }
 
   $('.process-table').attr('id', id[1]);
-  $('#business-process-name').html('<b>Process Name: </b>' + title[1]);
+  $('#business-process-name').html('<b>Process Name: </b>' + title[2]);
 
   // var row = $('<tr>');
   // var step = $('<input>').attr('type', 'text').attr('class', 'step-name');
@@ -113,9 +120,9 @@ function buildEmptyRow() {
       process_flows = {};
       process_flows['business_process_id'] =  window.id[1];
       process_flows['process_flow'] = [];
-      rows.each(function (i, row){
-
-        row = $(row);
+      for(var i = 0; i < rows.length; i ++){
+        var row = $(rows[i]);
+        //row = $(row);
         var cells = row.find('td');
         if(cells[0].children[0].value != '')
         {
@@ -126,17 +133,19 @@ function buildEmptyRow() {
           process['step_number'] = i + 1;
           process_flows['process_flow'].push(process);
         }
-      })
+      }
 
       $.ajax({
         url: '/process_flows/' + window.id[1],
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
         method: 'PATCH',
         dataType: 'json',
         data: process_flows
       }). done(function(responseData){
         console.log(responseData);
+        window.location.href = '/work_items';
       });
-      window.location.href = '/work_items';
+
 
       //console.log(process_flows);
   });

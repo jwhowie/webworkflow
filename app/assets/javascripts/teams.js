@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function(){
 
   if (window.location.pathname === "/teams") {
     $.ajax({
-      URL: "/teams",
+      URL: "/teams?all=1",
       method: "GET",
       dataType: "json",
       data: {}
@@ -170,50 +170,70 @@ $(document).on('turbolinks:load', function(){
     var oldRow = $(this).closest('tr');
     var cells = oldRow.find('td');
     var sendData = {};
-    sendData['id'] = oldRow.attr('id');
-    sendData['business_process_name'] = $('.process-name').val();
-    sendData['action'] = 1;
-    sendData['title'] = cells[0].children[0].value;
-    sendData['name'] = cells[1].children[0].value;
-    sendData['email'] = cells[2].children[0].value;
-    // sendData['user_id'] = cells[2].attr('id');
-    $(this).html(' - ');
+    if ( $(this).html() === '+' ){
+
+      sendData['id'] = 0;
+      sendData['business_process_name'] = $('.process-name').val();
+      sendData['action'] = 1;
+      sendData['title'] = cells[0].children[0].value;
+      sendData['name'] = cells[1].children[0].value;
+      sendData['email'] = cells[2].children[0].value;
+      // sendData['user_id'] = cells[2].attr('id');
+      $(this).html(' - ');
 
 
 
-    $.ajax({
-      url: '/teams',
-      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-      method: 'POST',
-      dataType: 'json',
-      data: {team: sendData}
+      $.ajax({
+        url: '/teams',
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        method: 'POST',
+        dataType: 'json',
+        data: {team: sendData}
 
-    }).done(function(responseData){
-      console.log(responseData);
+      }).done(function(responseData){
+        console.log(responseData);
 
-    });
-
-
-    console.log(sendData);
-
-    var row = $('<tr>').attr('id', 0);
-
-    var team = $('<input>').attr('type', 'text').attr('class', 'team-title');
-    var leader = $('<input>').attr('type', 'text').attr('class', 'team-lead');
-    var email = $('<input>').attr('type', 'text').attr('class', 'team-email').attr('id', 0);
-    var action = $('<button>').attr('id', 0).attr('class', 'action_button').html('+');
+      });
 
 
-      row.append($('<td>').append(team));
+      console.log(sendData);
 
-      row.append($('<td>').append(leader));
+      var row = $('<tr>').attr('id', 0);
 
-      row.append($('<td>').append(email));
+      var team = $('<input>').attr('type', 'text').attr('class', 'team-title');
+      var leader = $('<input>').attr('type', 'text').attr('class', 'team-lead');
+      var email = $('<input>').attr('type', 'text').attr('class', 'team-email').attr('id', 0);
+      var action = $('<button>').attr('id', 0).attr('class', 'action_button').html('+');
 
-      row.append($('<td>').append(action));
 
-      $('#team_edit').append(row);
+        row.append($('<td>').append(team));
 
+        row.append($('<td>').append(leader));
+
+        row.append($('<td>').append(email));
+
+        row.append($('<td>').append(action));
+
+        $('#team_edit').append(row);
+      }
+      else {
+        window.row = oldRow;
+
+
+        $.ajax({
+
+          url: '/teams/' + oldRow.attr('id'),
+          beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+          method: 'DELETE',
+          dataType: 'html',
+          data: {}
+
+        }).done(function(){
+          console.log('DELTED!');
+          window.row.remove();
+        });
+
+      }
 
   });
 

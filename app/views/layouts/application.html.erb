@@ -12,7 +12,18 @@
 
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
-        <%= link_to "WWF — Web Workflow", '#', id: "logo" %>
+        <%= link_to image_tag("logo.png"), '/', id: "logo" %>
+
+
+            <div id="searchfield">
+
+
+              <form id='autoCompleteParent'><input type="text" name="user" class="biginput ui-autocomplete-input" id="autocomplete" placeholder="Search by Customer Last Name"></form>
+            </div>
+
+
+
+
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <% if current_user %>
@@ -26,12 +37,12 @@
     <button class="nav dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Menu
     <span class="caret"></span></button>
     <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="/teams">New Business Process</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="/teams?all=1">New Business Process</a></li>
     <li role="presentation">
 
       <%= link_to 'New Customer', new_customer_path,  {:remote => true,  'data-target' => '#myModal'}  %>
     </li>
-    <% if current_user && my_team.user %>
+    <% if current_user && my_team %>
        <% if my_team.user == current_user %>
     <li role='presentation'><%=  link_to 'Edit my team', edit_team_path(my_team.id) %></li>
     <% end %>
@@ -39,7 +50,7 @@
     <div id='dynamic-items'></div>
 
 
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
+
     <li role="presentation" class="divider"></li>
     <li role="presentation">
       <%= link_to "Sign out", signout_path, id: "sign_out" %>
@@ -75,6 +86,7 @@
     </div>
     <div class="modal fade" id="workItemModal" data='' role="dialog">
     </div>
+
 
   </body>
 </html>

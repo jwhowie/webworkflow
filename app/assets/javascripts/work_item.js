@@ -60,7 +60,7 @@ $(document).on('turbolinks:load', function(){
       }
 
       });
-      window.timer = window.setTimeout(loadTable, 10000);
+      window.timer = window.setTimeout(loadTable, 1000000);
     }
 
 
