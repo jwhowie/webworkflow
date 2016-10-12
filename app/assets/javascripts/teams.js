@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function(){
 
   if (window.location.pathname === "/teams") {
     $.ajax({
-      URL: "/teams",
+      URL: "/teams?all=1",
       method: "GET",
       dataType: "json",
       data: {}

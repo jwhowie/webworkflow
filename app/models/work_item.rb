@@ -106,7 +106,7 @@ class WorkItem < ApplicationRecord
   work_items.customer_id = customers.id and
   work_items.user_id = users.id and
   work_items.process_flow_id = process_flows.id and work_items.team_id = #{user.team_id} order by work_items.created_at"
- 
+
   return result = ActiveRecord::Base.connection.execute(get_queue).to_json
   end
 
@@ -129,4 +129,23 @@ class WorkItem < ApplicationRecord
   return results = ActiveRecord::Base.connection.execute(work_query).to_json
   end
 
+  def self.get_work_item_status(customer_info_id)
+    open_query = "Select 'Open' as status, business_processes.title as title, work_items.created_at, history_text
+    From work_items, process_flows, business_processes
+    Where work_items.process_flow_id = process_flows.id
+    and process_flows.business_process_id = business_processes.id
+    and work_items.customer_id = #{customer_info_id}"
+    open_result =  ActiveRecord::Base.connection.execute(open_query)
+
+    closed_query = "select 'Closed' as status, '  ' as title, work_items.created_at, history_text
+    From work_items where process_flow_id is null
+    and customer_id = #{customer_info_id}
+    Order by work_items.created_at"
+    closed_result =  ActiveRecord::Base.connection.execute(closed_query)
+
+    results = []
+    open_result.each {|item| results.push(item)}
+    closed_result.each {|item| results.push(item)}
+    return results
+  end
 end
