@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function(){
 
   if (window.location.pathname === "/teams") {
     $.ajax({
-      URL: "/teams?all=1",
+      url: "/teams?all=1",
       method: "GET",
       dataType: "json",
       data: {}
@@ -41,6 +41,10 @@ $(document).on('turbolinks:load', function(){
       row.append($('<td>').append(action));
 
       $('#team_edit').append(row);
+    }).fail(function(stuff, morestuff, otherstuff){
+      console.log(stuff);
+    }).always(function(stuff){
+      console.log(stuff);
     });
     }
     else{
