@@ -13,11 +13,9 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.json
   def show
-    results = WorkItem.get_work_item_status(params[:id])
-    respond_to do |format|
-      format.html
-      format.json { render json: results }
-    end
+    @results = WorkItem.get_work_item_status(params[:id])
+
+
   end
 
   # GET /customers/new

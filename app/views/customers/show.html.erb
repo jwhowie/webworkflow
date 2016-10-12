@@ -1,39 +1,24 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @customer.last_name %>
-</p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @customer.first_name %>
-</p>
+<table id='status-table'>
+<thead>
+  <tr>
+    <th>Status</th>
+    <th>Process</th>
+    <th>Created</th>
+    <!-- <th>Action</th>
+    <th>Customer</th>
+    <th>Assigned</th> -->
+  </tr>
+</thead>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @customer.phone %>
-</p>
 
-<p>
-  <strong>Address 1:</strong>
-  <%= @customer.address_1 %>
-</p>
 
-<p>
-  <strong>Address 2:</strong>
-  <%= @customer.address_2 %>
-</p>
+<tbody id='queue-body' >
+  <% @result.each do |item|%>
+  <%= <tr><td>item["status"]</td><td>item["title"]</td><td>item["created_at"]</td>  </tr>%>
+  <% end%>
 
-<p>
-  <strong>City:</strong>
-  <%= @customer.city %>
-</p>
+</tbody>
 
-<p>
-  <strong>Email:</strong>
-  <%= @customer.email %>
-</p>
-
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-<%= link_to 'Back', customers_path %>
+</table>
