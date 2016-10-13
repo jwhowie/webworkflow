@@ -2,7 +2,7 @@
 $(document).on('turbolinks:load', function(){
   $("#workItemModal").on('shown.bs.modal', function () {
     window.customerId = ''
-    $('#autocomplete').autocomplete({
+    $('#autocompleted').autocomplete({
       source: function(request, response){
         console.log(request);
         $.ajax({
@@ -40,9 +40,9 @@ $(document).on('turbolinks:load', function(){
       },
       focus: function(event, ui) {
         event.preventDefault();
-        $("#autocomplete").val(ui.item.label);
+        $("#autocompleted").val(ui.item.label);
     },
-    appendTo : "#autoCompleteParent"
+    appendTo : "#autoCompleteParentWorkItem"
     });
 
 
