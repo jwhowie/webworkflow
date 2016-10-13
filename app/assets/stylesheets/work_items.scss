@@ -87,7 +87,18 @@ h3{
 .autocomplete-selected { background: #f0f0f0; }
 .autocomplete-suggestions strong { font-weight: normal; color: #3399ff; }
 
-#searchfield { display: block; width: 100%; text-align: left; margin-bottom: 35px; }
+#searchfield { display: block; text-align: left;}
+// #searchfield { display: block; width: 100%; text-align: left; margin-bottom: 35px; }
+.search{
+  width:100%;
+  margin_bottom: 35px;
+}
+
+.search2 {
+  width: 60%;
+  margin-top: 9px;
+  float: left;
+}
 
 #searchfield form {
   display: inline-block;
