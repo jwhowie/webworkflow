@@ -30,12 +30,13 @@ $(document).on('turbolinks:load', function(){
       {
         var body = $('#queue-body');
         var row = $('<tr>').attr('id', responseData[i].id);
-        var moved = $('<td>').html(responseData[i].moved_to_queue);
-        var created = $('<td>').html(responseData[i].created_at);
-        var team = $('<td>').html(responseData[i].title);
-        var stepName = $('<td>').html(responseData[i].step_name);
-        var customerInfo = $('<td>').html(responseData[i].contact_info);
-        var assigned =  $('<td>').html(responseData[i].name);
+        var moved = $('<td>').attr('class', 'table-col').html(responseData[i].moved_to_queue);
+
+        var created = $('<td>').attr('class', 'table-col').html(responseData[i].created_at);
+        var team = $('<td>').attr('class', 'table-col').html(responseData[i].title);
+        var stepName = $('<td>').attr('class', 'table-col').html(responseData[i].step_name);
+        var customerInfo = $('<td>').attr('class', 'table-col').html(responseData[i].contact_info);
+        var assigned =  $('<td>').attr('class', 'table-col').html(responseData[i].name);
         row.append(moved);
         row.append(created);
         row.append(team);

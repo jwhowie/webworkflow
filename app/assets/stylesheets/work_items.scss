@@ -19,6 +19,10 @@
     //top: 20px;
 }
 
+.table-col{
+  padding: 5px;
+}
+
 #comments-customer{
   width: 100%;
   overflow: hidden;
@@ -43,6 +47,10 @@ tr:hover{
 tr:nth-child(even){background-color: #f2f2f2}
 
 #queue-body {
+
+}
+
+.queue {
   height: 400;
   border: solid black 1px;
 }

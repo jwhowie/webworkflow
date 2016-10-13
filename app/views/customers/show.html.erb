@@ -1,11 +1,11 @@
 
-
-<table id='status-table'>
+<div class='scrollqueue'>
+<table id='status-table' class='queue'>
 <thead>
   <tr>
-    <th>Status</th>
-    <th>Process</th>
-    <th>Created</th>
+    <th class='table-col'>Status</th>
+    <th class='table-col'>Process</th>
+    <th class='table-col'>Created</th>
     <!-- <th>Action</th>
     <th>Customer</th>
     <th>Assigned</th> -->
@@ -14,15 +14,17 @@
 
 
 
+
+
 <tbody id='status-body' >
   <% @results.each do |item|%>
   <tr class='status-row' data-work-history="
   <%= item['history_text'] %>
-   "><td>
+   "><td class='table-col'>
     <%= item["status"] %>
-  </td><td>
+  </td><td class='table-col'>
     <%= item["title"] %>
-    </td><td>
+    </td><td class='table-col'>
     <%= item["created_at"] %>
     </td>
   </tr>
@@ -31,7 +33,7 @@
 </tbody>
 
 </table>
-
+</div>
 <div>
   <div>
     <h4>History:</h4>
