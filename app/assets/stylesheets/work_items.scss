@@ -97,7 +97,10 @@ h3{
 .search2 {
   width: 60%;
   margin-top: 9px;
-  float: left;
+  // float: left;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
 }
 
 #searchfield form {
