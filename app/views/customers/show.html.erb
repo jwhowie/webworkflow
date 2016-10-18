@@ -1,4 +1,6 @@
 
+<h3> Customer Work Items</h3>
+<h4 id='customerInfo'><%= "#{@customer.first_name} #{@customer.last_name}" %></h4>
 <div class='scrollqueue'>
 <table id='status-table' class='queue'>
 <thead>
@@ -16,7 +18,7 @@
 
 
 
-<tbody id='status-body' >
+<tbody id='status-body'>
   <% @results.each do |item|%>
   <tr class='status-row' data-work-history="
   <%= item['history_text'] %>

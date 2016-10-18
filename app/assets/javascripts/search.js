@@ -31,8 +31,9 @@ $(document).on('turbolinks:load', function(){
         event.preventDefault();
         // window.customerId = ui.item.value;
         this.value = ui.item.label;
+        //var customerDisplay = this.value;
         window.location.href = '/customers/' + ui.item.value;
-
+        //$('#customerInfo').text(customerDisplay);
         return false;
         // $('#autocomplete').val(ui.itme.label);
         // PK.render(ui.item.value);
