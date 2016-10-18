@@ -134,7 +134,7 @@ class WorkItem < ApplicationRecord
     From work_items, process_flows, business_processes
     Where work_items.process_flow_id = process_flows.id
     and process_flows.business_process_id = business_processes.id
-    and work_items.customer_id = #{customer_info_id}"
+    and work_items.customer_id = #{customer_info_id} Order by work_items.created_at"
     open_result =  ActiveRecord::Base.connection.execute(open_query)
 
     closed_query = "select 'Closed' as status, '  ' as title, work_items.created_at, history_text
