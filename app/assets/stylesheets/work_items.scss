@@ -46,10 +46,6 @@ tr:hover{
 
 tr:nth-child(even){background-color: #f2f2f2}
 
-#queue-body {
-
-}
-
 .queue {
   height: 400;
   border: solid black 1px;
@@ -91,16 +87,14 @@ h3{
 // #searchfield { display: block; width: 100%; text-align: left; margin-bottom: 35px; }
 .search{
   width:100%;
-  margin_bottom: 35px;
+  margin-bottom: 35px;
 }
 
 .search2 {
   width: 60%;
   margin-top: 9px;
-  // float: left;
-  margin-left: auto;
-  margin-right: auto;
-  display: inline-block;
+  float: left;
+  margin-left: 180px;
 }
 
 #searchfield form {
