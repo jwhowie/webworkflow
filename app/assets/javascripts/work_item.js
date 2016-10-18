@@ -81,14 +81,29 @@ $(document).on('turbolinks:load', function(){
       console.log(responseData);
       cust = $('#customer-info');
       cust.empty();
-      cust.append($('<div>').attr('id', responseData[0].step_number).html(responseData[0].name));
-      cust.append($('<div>').html(responseData[0].address_1));
-      cust.append($('<div>').html(responseData[0].address_2));
-      cust.append($('<div>').html(responseData[0].city));
-      cust.append($('<div>').html(responseData[0].phone));
-      cust.append($('<div>').html(responseData[0].email));
+      cust.append($('<div>').attr('id', responseData[0].step_number)
+           .attr('class', 'customer-info-content')
+           .html(responseData[0].name));
+      cust.append($('<div>')
+            .attr('class', 'customer-info-content')
+            .html(responseData[0].address_1));
+      cust.append($('<div>')
+            .attr('class', 'customer-info-content')
+            .html(responseData[0].address_2));
+      cust.append($('<div>')
+            .attr('class', 'customer-info-content')
+            .html(responseData[0].city));
+      cust.append($('<div>')
+            .attr('class', 'customer-info-content')
+            .html(responseData[0].phone));
 
-      var hist = $('#queue-history').val(responseData[0].history_text);
+      cust.append($('<div>')
+            .attr('class', 'customer-info-content')
+            .html(responseData[0].email));
+
+      var hist = $('#queue-history')
+            .attr('class', 'customer-info-content')
+            .val(responseData[0].history_text);
       if(responseData[0].step_number == '1') {
          $("#queue-back").prop("disabled", true)//.removeClass('btn-primary').addClass('btn-disabled');
       }
